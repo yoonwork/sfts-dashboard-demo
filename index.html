@@ -5,13 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
 <meta name="description" content="SFTS 위험예측 대시보드 시연 화면 (예시 데이터)">
-<meta name="theme-color" content="#eef1f6">
+<meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="only light">
 <link rel="icon" href="data:,">
 <title>진드기알리미 · 제주 SFTS 위험예측 (예시)</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" media="print" onload="this.media='all'">
 <style>
-:root{color-scheme:light;--bg:#eef1f6;--card:#fff;--ink:#0f172a;--ink2:#475467;--mut:#8a93a6;--line:#eef1f5;--line2:#e3e8f0;--brand:#2457f5;--brand-d:#1b45d6;--brand-t:#eaf0ff;--navy:#0d1633;--navy2:#18234a;--s0:#1fa971;--s1:#f2b01e;--s2:#f57c2b;--s3:#e5484d;--r:22px;--sh:0 1px 2px rgba(15,23,42,.04),0 8px 24px rgba(15,23,42,.05)}
+:root{color-scheme:only light;--bd:#eef0f4;--bg:#fff;--card:#fff;--ink:#0f172a;--ink2:#475467;--mut:#6b7385;--line:#eef1f5;--line2:#e3e8f0;--brand:#2457f5;--brand-d:#1b45d6;--brand-t:#eaf0ff;--navy:#0d1633;--navy2:#18234a;--s0:#1fa971;--s1:#f2b01e;--s2:#f57c2b;--s3:#e5484d;--r:22px;--sh:0 1px 2px rgba(16,24,40,.03)}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:16px}
@@ -24,13 +25,13 @@ svg{flex:none}
 .num{font-variant-numeric:tabular-nums}
 .ic{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 /* 예시 띠 */
-.band{background:var(--navy);color:rgba(255,255,255,.72);font-size:12px}
+.band{background:#f7f8fa;color:var(--ink2);font-size:12px;border-bottom:1px solid var(--bd)}
 .band .wrap{display:flex;justify-content:space-between;gap:12px;min-height:30px;align-items:center}
-.band b{color:#fff;font-weight:600;margin-right:6px}
+.band b{color:var(--ink);font-weight:600;margin-right:6px}
 .band b:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--s1);margin-right:6px;vertical-align:2px}
 #perf{white-space:nowrap;font-variant-numeric:tabular-nums}
 /* 상단 바 */
-.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0 0;background:var(--card);border-radius:999px;padding:8px 8px 8px 16px;box-shadow:var(--sh)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0 0;background:var(--card);border:1px solid var(--bd);border-radius:999px;padding:8px 8px 8px 16px}
 .logo{display:flex;align-items:center;gap:9px;font-weight:700;font-size:16.5px;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
 .tabs{display:none;background:#f1f3f8;border-radius:999px;padding:4px;gap:2px}
 .tabs a{color:var(--ink2);text-decoration:none;font-weight:500;padding:8px 18px;border-radius:999px;font-size:14px}
@@ -48,18 +49,21 @@ svg{flex:none}
 .pop small{color:var(--mut)}
 ul,ol{list-style:none;margin:0;padding:0}
 /* 제목 줄 */
-.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;margin:22px 0 16px}
+.head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:22px 0 16px}
 h1{font-size:23px;font-weight:700;letter-spacing:-.03em;line-height:1.25}
 h1 span{color:var(--mut);font-weight:500}
 .upd{display:flex;align-items:center;gap:7px;color:var(--ink2);font-size:13px;margin-top:6px}
 .live{width:8px;height:8px;border-radius:50%;background:var(--s0);box-shadow:0 0 0 3px rgba(31,169,113,.18)}
 .hact{display:flex;gap:8px}
-.pill{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;background:var(--card);border:0;box-shadow:var(--sh);font-size:13.5px;font-weight:500;white-space:nowrap}
-.pill.pr{background:var(--brand);color:#fff}
+.pill{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;background:var(--card);border:1px solid var(--bd);font-size:13.5px;font-weight:500;white-space:nowrap}
+.pill.pr{background:var(--brand);border-color:var(--brand);color:#fff}
 .pill.pr:hover{background:var(--brand-d)}
+.hact .rg{display:none}
+.hact .pr{width:40px;padding:0;justify-content:center;background:var(--card);border-color:var(--line2);color:var(--ink)}
+.hact .pr span{display:none}
 /* 카드 */
 .grid{display:grid;gap:16px}
-.card{background:var(--card);border-radius:var(--r);padding:20px;box-shadow:var(--sh);min-width:0}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:20px;box-shadow:var(--sh);min-width:0}
 .ch{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:16px}
 h2{font-size:16px;font-weight:650;letter-spacing:-.02em;white-space:nowrap}
 .ch p{color:var(--mut);font-size:12.5px;margin-top:2px}
@@ -80,11 +84,12 @@ h2{font-size:16px;font-weight:650;letter-spacing:-.02em;white-space:nowrap}
 .dl{display:inline-flex;align-items:center;height:20px;padding:0 7px;border-radius:999px;font-size:11.5px;font-weight:650;font-variant-numeric:tabular-nums}
 .dl.up{background:#ffe8e9;color:#c42b31}
 .dl.dn{background:#e3f6ed;color:#127a4f}
-.dl.nt{background:var(--brand-t);color:var(--brand)}
+.dl.nt{background:#f1f3f7;color:var(--ink2)}
 /* 상태 칩 */
 .chip{display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px 0 8px;border-radius:999px;font-size:12px;font-weight:650;white-space:nowrap}
 .chip i{width:6px;height:6px;border-radius:50%;background:currentColor}
 .c0{background:#e3f6ed;color:#127a4f}.c1{background:#fff3d4;color:#8a6100}.c2{background:#ffe9da;color:#b2480c}.c3{background:#ffe3e4;color:#c42b31}
+.c0 i{background:var(--s0)}.c1 i{background:var(--s1)}.c2 i{background:var(--s2)}.c3 i{background:var(--s3)}
 /* 지도 패널 */
 .panel{background:var(--navy);color:#fff;border-radius:var(--r);padding:20px;min-width:0;position:relative;overflow:hidden}
 .panel h2{color:#fff}
@@ -103,7 +108,7 @@ h2{font-size:16px;font-weight:650;letter-spacing:-.02em;white-space:nowrap}
 #jm .hl{fill:none;stroke:#fff;stroke-width:2.2;pointer-events:none}
 #jm .ins{fill:none;stroke:rgba(255,255,255,.22);stroke-dasharray:4 4;vector-effect:non-scaling-stroke}
 #jm text{pointer-events:none;fill:#fff;font-weight:600;paint-order:stroke;stroke:rgba(13,22,51,.55);stroke-width:4px;stroke-linejoin:round}
-#jm .ml{font-size:17px;display:none}
+#jm .ml{font-size:20px;display:none}
 #jm .il{font-size:15px;fill:rgba(255,255,255,.6);stroke:none;font-weight:500}
 .side{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .hc{border-radius:18px;padding:14px;min-width:0}
@@ -155,7 +160,7 @@ h2{font-size:16px;font-weight:650;letter-spacing:-.02em;white-space:nowrap}
 .seg button{border:0;background:none;border-radius:999px;padding:6px 14px;font-size:13px;font-weight:500;color:var(--ink2)}
 .seg button[aria-pressed=true]{background:var(--brand);color:#fff;font-weight:600}
 .cbox{position:relative;min-height:220px}
-.cbox svg{display:block;touch-action:pan-y;outline:none}
+.cbox svg{display:block;touch-action:pan-y;outline:none;overflow:visible}
 .cbox svg:focus-visible{box-shadow:0 0 0 2px var(--brand);border-radius:10px}
 .gl{stroke:var(--line2);stroke-dasharray:3 5}
 .ga{stroke:var(--line2)}
@@ -168,10 +173,12 @@ h2{font-size:16px;font-weight:650;letter-spacing:-.02em;white-space:nowrap}
 .bub path{fill:var(--navy)}
 .bub text{fill:#fff;font-size:12px;font-weight:650}
 .bdot{fill:var(--card);stroke:var(--brand);stroke-width:3}
-.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.facts span{display:inline-flex;align-items:center;gap:6px;background:#f5f7fb;border-radius:999px;padding:6px 12px;font-size:12.5px;color:var(--ink2)}
+.facts{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.facts span{display:inline-flex;align-items:center;gap:5px;background:#f5f7fb;border-radius:999px;padding:6px 10px;font-size:12.5px;color:var(--ink2)}
 .facts b{color:var(--ink);font-variant-numeric:tabular-nums}
 /* 기상 요인 */
+#wx{display:flex;flex-direction:column}
+.wx{flex:1;display:flex;flex-direction:column;justify-content:space-between}
 .wx li{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
 .wx li:last-child{border-bottom:0;padding-bottom:0}
 .wx .ki{width:36px;height:36px}
@@ -194,11 +201,10 @@ td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
 tbody tr.r:hover td{background:#f8f9fc}
 tbody tr.r.op td{background:#f5f8ff;border-bottom-color:transparent}
 .rk{color:var(--mut);font-variant-numeric:tabular-nums;width:28px}
+.w3{width:48px}
 .nm b{display:block;font-weight:600;font-size:13.5px}
 .nm small{color:var(--mut);font-size:11.5px}
 .ix{display:flex;align-items:center;gap:10px;font-weight:700;font-variant-numeric:tabular-nums}
-.ix i{display:none;width:64px;height:6px;border-radius:3px;background:#f0f3f9;overflow:hidden}
-.ix i:after{content:"";display:block;height:100%;width:var(--w);background:var(--brand);border-radius:3px;opacity:.85}
 .dd{font-variant-numeric:tabular-nums;font-size:12.5px;font-weight:600;white-space:nowrap}
 .dd.up{color:#c42b31}.dd.dn{color:#127a4f}.dd.eq{color:var(--mut)}
 .sp{display:none}
@@ -237,15 +243,19 @@ td.x{padding:0 8px 14px;background:#f5f8ff}
 footer{padding:20px 4px 96px;font-size:12px;color:var(--mut);line-height:1.6}
 footer a{color:inherit}
 /* 하단 탭 (휴대폰) */
-.btm{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.96);border-top:1px solid var(--line2);display:grid;grid-template-columns:repeat(4,1fr);padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
+.btm{position:fixed;left:0;right:0;bottom:0;z-index:30;background:#fff;border-top:1px solid var(--bd);box-shadow:0 -4px 16px rgba(16,24,40,.04);display:grid;grid-template-columns:repeat(4,1fr);padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
 .btm a{display:grid;justify-items:center;gap:2px;font-size:11px;font-weight:500;color:var(--mut);text-decoration:none;padding:4px 0}
 .btm a .ic{width:21px;height:21px}
 .btm a.on{color:var(--brand);font-weight:650}
 @media (min-width:640px){
  .wrap{padding:0 24px}
+ .hact .rg{display:inline-flex}
+ .hact .pr{width:auto;padding:0 16px;background:var(--brand);border-color:var(--brand);color:#fff}
+ .hact .pr span{display:inline}
  h1{font-size:28px}
  .kpi{grid-template-columns:repeat(4,1fr)}
- .k{border:0!important;padding:16px 20px}
+ .card.kpi{padding:0}
+ .k{border:0!important;padding:22px 24px}
  .k+.k{border-left:1px solid var(--line)!important}
  .kv{font-size:30px}
  .card,.panel{padding:24px}
@@ -254,8 +264,8 @@ footer a{color:inherit}
  #jm .ml{display:block}
  .pv{grid-template-columns:1fr 1fr}
  .pv li{grid-template-columns:1fr;align-items:start;gap:14px;padding:16px}
- .ix i{display:block}
  .sp{display:table-cell}
+ .w1{width:24%}.w2{width:13%}
 }
 @media (min-width:640px) and (max-width:1099px){
  .grid{grid-template-columns:1fr 1fr;grid-auto-flow:row dense}
@@ -270,6 +280,7 @@ footer a{color:inherit}
 @media (min-width:1100px){
  .grid{grid-template-columns:repeat(12,1fr);gap:20px}
  .kpi{margin-bottom:20px}
+ .head{margin-bottom:20px}
  #map,#fc,#pv{grid-column:span 8}
  #top5,#wx,#pipe{grid-column:span 4}
  #rp{grid-column:1/-1}
@@ -303,8 +314,8 @@ footer a{color:inherit}
 <section class="head" id="dash" aria-label="개요">
  <div><h1>SFTS 위험 현황 <span>제주 전체</span></h1><p class="upd"><i class="live"></i>2026.10.21 (수) 06:00 갱신</p></div>
  <div class="hact">
-  <span class="pill"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>10.21 – 11.03</span>
-  <button class="pill pr" id="bSh" type="button"><svg class="ic" viewBox="0 0 24 24"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v13"/></svg><span>공유</span></button>
+  <span class="pill rg"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>10.21 – 11.03</span>
+  <button class="pill pr" id="bSh" type="button" aria-label="공유"><svg class="ic" viewBox="0 0 24 24"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v13"/></svg><span>공유</span></button>
  </div>
 </section>
 
@@ -347,7 +358,7 @@ footer a{color:inherit}
     <label class="srch"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="읍면동 검색" aria-label="읍면동 검색"></label>
    </div></div>
   <div style="overflow-x:auto"><table>
-   <thead><tr><th class="rk">#</th><th>읍면동</th><th>위험지수</th><th>단계</th><th>전일</th><th class="sp">14일 추이</th><th><span hidden>상세</span></th></tr></thead>
+   <thead><tr><th class="rk">#</th><th class="w1">읍면동</th><th class="w2">위험지수</th><th class="w2">단계</th><th class="w2">전일</th><th class="sp">14일 추이</th><th class="w3"><span hidden>상세</span></th></tr></thead>
    <tbody id="tb"></tbody>
   </table></div>
   <button type="button" class="more" id="more" hidden></button>
@@ -478,7 +489,7 @@ $('wxl').innerHTML=D.wx.map(function(w){return '<li><span class="ki">'+ico(w[5])
 /* 막대 그래프 */
 function bars(box,data,o){
  var W=Math.max(240,Math.floor(box.clientWidth)),H=o.h,n=data.length,cp=!!o.cp,wide=W>=560;
- var m={l:28,r:wide&&!cp?38:6,t:40,b:cp?28:40},pw=W-m.l-m.r,ph=H-m.t-m.b,sl=pw/n,bw=Math.min(cp?26:46,sl*(n>7?.62:.5)),k;
+ var m={l:28,r:wide&&!cp?38:6,t:cp?36:30,b:cp?28:40},pw=W-m.l-m.r,ph=H-m.t-m.b,sl=pw/n,bw=Math.min(cp?26:46,sl*(n>7?.62:.5)),k;
  function y(v){return m.t+ph-v/100*ph}
  var s='<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'" tabindex="0" role="img" aria-label="'+o.label+' '+n+'일 위험지수 막대 그래프">';
  [0,25,50,75,100].forEach(function(v){s+='<line class="'+(v?'gl':'ga')+'" x1="'+m.l+'" x2="'+(W-m.r)+'" y1="'+y(v)+'" y2="'+y(v)+'"/><text class="tk" x="'+(m.l-8)+'" y="'+(y(v)+4)+'" text-anchor="end">'+v+'</text>'});
@@ -496,7 +507,7 @@ function bars(box,data,o){
   var v=data[i],cx=m.l+sl*i+sl/2,top=m.t+ph-Math.max(bw,v/100*ph);
   dot.setAttribute('cx',cx);dot.setAttribute('cy',top+bw/2);
   bt.textContent=v+' · '+SN[st(v)];var tw=bt.getComputedTextLength()+24;
-  var bx=Math.min(Math.max(cx-tw/2,m.l-6),W-tw-2);
+  var bx=Math.min(Math.max(cx-tw/2,Math.min(m.l+2,cx-16)),W-tw-2);
   br.setAttribute('width',tw);br.setAttribute('x',bx-cx);bt.setAttribute('x',bx-cx+tw/2);bp.setAttribute('transform','translate(0,26)');
   bub.setAttribute('transform','translate('+cx+','+(top-38)+')');
   svg.setAttribute('aria-label',o.label+' '+md(i)+' 위험지수 '+v+' '+SN[st(v)]);
@@ -509,32 +520,33 @@ function bars(box,data,o){
  show(c);
 }
 var N=14;
-function facts(d,el){
+function sd(i){var d=day(i);return d.m+'/'+d.d}
+function facts(d,el,cp){
  var mx=0,i,s0=st(d[0]),ch=-1;for(i=1;i<d.length;i++){if(d[i]>d[mx])mx=i;if(ch<0&&st(d[i])!==s0)ch=i}
- var h='<span>최고 <b>'+d[mx]+'</b> '+md(mx)+'</span>';
- if(ch>0)h+='<span>'+SN[s0]+' → '+SN[st(d[ch])]+' <b>'+md(ch)+'</b></span>';
- h+='<span>평균 <b>'+Math.round(d.reduce(function(a,b){return a+b},0)/d.length)+'</b></span>';
+ var h='<span>최고 <b>'+d[mx]+'</b> '+sd(mx)+'</span>';
+ if(ch>0)h+='<span>'+SN[s0]+' → '+SN[st(d[ch])]+' <b>'+sd(ch)+'</b></span>';
+ if(!cp)h+='<span>평균 <b>'+Math.round(d.reduce(function(a,b){return a+b},0)/d.length)+'</b></span>';
  el.innerHTML=h;
 }
-function renderFc(){var d=D.jeju.slice(0,N);bars($('cmain'),d,{h:window.innerWidth>=1100?290:250,label:'제주 전체'});facts(d,$('facts'))}
+function renderFc(){var d=D.jeju.slice(0,N);bars($('cmain'),d,{h:window.innerWidth>=1100?290:window.innerWidth>=640?260:230,label:'제주 전체'});facts(d,$('facts'))}
 $('fc').querySelector('.seg').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;N=+b.getAttribute('data-n');
  this.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});renderFc()});
 
 /* 표 */
 var F={c:-1,q:'',all:false},open=null,LIM=10;
-function spark(s){var w=72,h=22,mx=100,p='';s.forEach(function(v,i){p+=(i?'L':'M')+(i*w/(s.length-1)).toFixed(1)+' '+(h-2-v/mx*(h-4)).toFixed(1)});
- return '<svg width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'" aria-hidden="true"><path d="'+p+'" fill="none" stroke="#2457f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'}
+function spark(s){var w=120,h=24,mx=100,p='';s.forEach(function(v,i){p+=(i?'L':'M')+(i*w/(s.length-1)).toFixed(1)+' '+(h-2-v/mx*(h-4)).toFixed(1)});
+ return '<svg width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'" aria-hidden="true"><path d="'+p+'" fill="none" stroke="#98a2b3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'}
 function renderTable(){
  var L=byV.filter(function(a){return (F.c<0||a.c===F.c)&&(!F.q||a.n.indexOf(F.q)>=0)});
  $('rpc').textContent=(F.c<0?'제주 전체':CITY[F.c])+' · '+L.length+'곳';
  var rest=F.all||F.q?0:Math.max(0,L.length-LIM),show=rest?L.slice(0,LIM):L,h='';
  show.forEach(function(a,k){var s=st(a.v),op=open===a.i;
-  h+='<tr class="r'+(op?' op':'')+'"><td class="rk">'+(k+1)+'</td><td class="nm"><b>'+a.n+'</b><small>'+CITY[a.c]+'</small></td><td><span class="ix">'+a.v+'<i style="--w:'+a.v+'%"></i></span></td><td>'+chip(s)+'</td><td><span class="dd '+(a.d>0?'up':a.d<0?'dn':'eq')+'">'+(a.d>0?'▲ '+a.d:a.d<0?'▼ '+(-a.d):'–')+'</span></td><td class="sp">'+spark(a.s)+'</td><td><button type="button" class="go" data-i="'+a.i+'" aria-expanded="'+op+'" aria-label="'+a.n+' 14일 예측 보기">'+ico('<path d="M7 17 17 7M8 7h9v9"/>')+'</button></td></tr>';
+  h+='<tr class="r'+(op?' op':'')+'"><td class="rk">'+(k+1)+'</td><td class="nm"><b>'+a.n+'</b><small>'+CITY[a.c]+'</small></td><td><span class="ix">'+a.v+'</span></td><td>'+chip(s)+'</td><td><span class="dd '+(a.d>0?'up':a.d<0?'dn':'eq')+'">'+(a.d>0?'▲ '+a.d:a.d<0?'▼ '+(-a.d):'–')+'</span></td><td class="sp">'+spark(a.s)+'</td><td><button type="button" class="go" data-i="'+a.i+'" aria-expanded="'+op+'" aria-label="'+a.n+' 14일 예측 보기">'+ico('<path d="M7 17 17 7M8 7h9v9"/>')+'</button></td></tr>';
   if(op)h+='<tr><td class="x" colspan="7"><div class="xb"><div class="cbox"></div><div class="facts"></div></div></td></tr>'});
  if(!L.length)h='<tr><td class="emp" colspan="7">검색 결과가 없습니다</td></tr>';
  $('tb').innerHTML=h;
  var mo=$('more');mo.hidden=!rest&&!(F.all&&L.length>LIM&&!F.q);mo.textContent=rest?'전체 '+L.length+'곳 보기':'접기';
- if(open!==null){var x=$('tb').querySelector('.xb');if(x){var a=A[open];bars(x.querySelector('.cbox'),a.s,{h:200,cp:true,label:a.n});facts(a.s,x.querySelector('.facts'))}}
+ if(open!==null){var x=$('tb').querySelector('.xb');if(x){var a=A[open];bars(x.querySelector('.cbox'),a.s,{h:200,cp:true,label:a.n});facts(a.s,x.querySelector('.facts'),1)}}
 }
 $('tb').addEventListener('click',function(e){var b=e.target.closest('.go');if(!b)return;var i=+b.getAttribute('data-i');open=open===i?null:i;renderTable();pick(i);
  var nb=$('tb').querySelector('.go[data-i="'+i+'"]');if(nb)nb.focus({preventScroll:true})});
