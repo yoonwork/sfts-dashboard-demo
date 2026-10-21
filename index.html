@@ -4,466 +4,574 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="description" content="SFTS 위험예측 대시보드 경량 시연 화면. 모든 수치는 예시 데이터입니다.">
+<meta name="description" content="SFTS 위험예측 대시보드 시연 화면 (예시 데이터)">
+<meta name="theme-color" content="#eef1f6">
 <link rel="icon" href="data:,">
-<title>SFTS 위험예측 시연 화면 (예시)</title>
+<title>진드기알리미 · 제주 SFTS 위험예측 (예시)</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" media="print" onload="this.media='all'">
 <style>
-:root{color-scheme:light;--bg:#f4f4f2;--card:#fff;--ink:#0b0b0b;--ink2:#52514e;--mut:#6f6d68;--line:#e6e5df;--line2:#cfcec7;--blue:#2a78d6;--blue-t:#dbe9fb;--hov:rgba(11,11,11,.04);--s0:#0ca30c;--s1:#fab219;--s2:#ec835a;--s3:#d03b3b;--t0:rgba(12,163,12,.10);--t1:rgba(250,178,25,.17);--t2:rgba(236,131,90,.17);--t3:rgba(208,59,59,.12);--band:.075;--r:16px}
-@media (prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#0d0d0d;--card:#1a1a19;--ink:#f0efec;--ink2:#c3c2b7;--mut:#9a988f;--line:#2c2c2a;--line2:#45453f;--blue:#3987e5;--blue-t:#1d3556;--hov:rgba(255,255,255,.05);--t0:rgba(12,163,12,.20);--t1:rgba(250,178,25,.20);--t2:rgba(236,131,90,.22);--t3:rgba(208,59,59,.24);--band:.12}}
+:root{color-scheme:light;--bg:#eef1f6;--card:#fff;--ink:#0f172a;--ink2:#475467;--mut:#8a93a6;--line:#eef1f5;--line2:#e3e8f0;--brand:#2457f5;--brand-d:#1b45d6;--brand-t:#eaf0ff;--navy:#0d1633;--navy2:#18234a;--s0:#1fa971;--s1:#f2b01e;--s2:#f57c2b;--s3:#e5484d;--r:22px;--sh:0 1px 2px rgba(15,23,42,.04),0 8px 24px rgba(15,23,42,.05)}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:12px}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;word-break:keep-all;overflow-wrap:break-word}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:16px}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;word-break:keep-all;-webkit-font-smoothing:antialiased}
 h1,h2,h3,p{margin:0}
-button,input,select{font:inherit;color:inherit}
-.wrap{max-width:1140px;margin:0 auto;padding:0 16px}
-.demo{background:#0b0b0b;color:#f4f4f2;font-size:13px;padding:8px 0}
-.demo .wrap{display:flex;gap:8px;align-items:baseline}
-.demo b{flex:none;background:#fab219;color:#0b0b0b;border-radius:6px;padding:1px 7px;font-size:12px}
-header{padding:20px 0 8px}
-h1{font-size:24px;line-height:1.25;letter-spacing:-.02em}
-.sub{color:var(--ink2);font-size:13.5px;margin-top:4px}
-.ex{display:inline-block;font-size:11.5px;font-weight:600;color:var(--ink2);border:1px solid var(--line2);border-radius:5px;padding:0 5px;margin-left:4px;vertical-align:1px;line-height:1.5}
-nav{display:flex;gap:6px;overflow-x:auto;margin:14px -16px 0;padding:0 16px 2px;scrollbar-width:none}
-nav::-webkit-scrollbar{display:none}
-nav a{flex:none;font-size:13.5px;color:var(--ink);text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
-nav a:active{background:var(--hov)}
-.perf{margin:10px 0 0;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;grid-template-columns:repeat(2,1fr);gap:6px 12px;font-size:13px;color:var(--ink2)}
-.perf .pt{grid-column:1/-1;display:flex;justify-content:space-between;gap:8px;font-weight:600;color:var(--ink)}
-.perf .pt small{font-weight:400;color:var(--mut)}
-.perf b{color:var(--ink);font-size:15px;margin-right:4px}
-main{display:grid;gap:12px;padding:12px 0 8px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 16px}
-h2{font-size:17px;letter-spacing:-.01em;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.lead{color:var(--ink2);font-size:13.5px;margin-top:4px}
-.si{display:inline-block;vertical-align:-1px;flex:none}
-.f0{fill:var(--s0)}.f1{fill:var(--s1)}.f2{fill:var(--s2)}.f3{fill:var(--s3)}
-.bg0{background:var(--s0)}.bg1{background:var(--s1)}.bg2{background:var(--s2)}.bg3{background:var(--s3)}
-.bd{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;border-radius:999px;padding:2px 9px 2px 7px;white-space:nowrap;color:var(--ink)}
-.b0{background:var(--t0)}.b1{background:var(--t1)}.b2{background:var(--t2)}.b3{background:var(--t3)}
-/* 오늘 */
-.hero{position:relative;overflow:hidden}
-.hero:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--sc)}
-.h-top{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--ink2);font-size:13.5px}
-.h-main{display:flex;align-items:center;gap:14px;margin:12px 0 4px}
-.h-word{font-size:52px;font-weight:800;line-height:1;letter-spacing:-.03em}
-.h-side{display:grid;gap:2px;font-size:13.5px;color:var(--ink2)}
-.h-side b{font-size:22px;color:var(--ink);font-weight:700}
-.h-msg{font-size:15px;margin:10px 0 0;font-weight:600}
-.meter{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin:16px 0 4px;position:relative}
-.meter i{height:10px;background:var(--line);display:block}
-.meter i:first-child{border-radius:5px 0 0 5px}.meter i:last-child{border-radius:0 5px 5px 0}
-.meter .on{background:var(--sc)}
-.mk{position:absolute;top:-5px;width:3px;height:20px;border-radius:2px;background:var(--ink);box-shadow:0 0 0 2px var(--card);transform:translateX(-50%)}
-.ml{display:grid;grid-template-columns:repeat(4,1fr);font-size:12px;color:var(--mut);text-align:center}
-.ml span.cur{color:var(--ink);font-weight:700}
-.h-note{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink2)}
-/* 기상 요인 */
-.wx{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:14px}
-.wi{border:1px solid var(--line);border-radius:12px;padding:12px}
-.wh{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink2)}
-.wh svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.wv{font-size:26px;font-weight:700;margin:4px 0 0;letter-spacing:-.02em}
-.wv small{font-size:14px;font-weight:600;margin-left:2px;color:var(--ink2)}
-.wd{font-size:12.5px;color:var(--ink2)}
-.wm{height:6px;border-radius:3px;background:var(--blue-t);margin:10px 0 4px;overflow:hidden}
-.wm i{display:block;height:100%;background:var(--blue);border-radius:3px}
-.wc{font-size:12px;color:var(--mut)}
-.wc b{color:var(--ink);font-weight:600}
-/* 차트 */
-.c-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-.btn{flex:none;background:var(--card);border:1px solid var(--line2);border-radius:9px;padding:6px 11px;font-size:13px;cursor:pointer}
-.btn:hover{background:var(--hov)}
-.cbox{position:relative;margin-top:12px;min-height:240px}
-.cbox svg{display:block;touch-action:pan-y;outline:none;overflow:visible}
-.cbox svg:focus-visible{box-shadow:0 0 0 2px var(--blue);border-radius:6px}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+svg{flex:none}
+.wrap{max-width:1280px;margin:0 auto;padding:0 16px}
+.num{font-variant-numeric:tabular-nums}
+.ic{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+/* 예시 띠 */
+.band{background:var(--navy);color:rgba(255,255,255,.72);font-size:12px}
+.band .wrap{display:flex;justify-content:space-between;gap:12px;min-height:30px;align-items:center}
+.band b{color:#fff;font-weight:600;margin-right:6px}
+.band b:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--s1);margin-right:6px;vertical-align:2px}
+#perf{white-space:nowrap;font-variant-numeric:tabular-nums}
+/* 상단 바 */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0 0;background:var(--card);border-radius:999px;padding:8px 8px 8px 16px;box-shadow:var(--sh)}
+.logo{display:flex;align-items:center;gap:9px;font-weight:700;font-size:16.5px;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.tabs{display:none;background:#f1f3f8;border-radius:999px;padding:4px;gap:2px}
+.tabs a{color:var(--ink2);text-decoration:none;font-weight:500;padding:8px 18px;border-radius:999px;font-size:14px}
+.tabs a:hover{color:var(--ink)}
+.tabs a.on{background:var(--card);color:var(--ink);font-weight:600;box-shadow:0 1px 3px rgba(15,23,42,.08)}
+.tools{display:flex;gap:6px;position:relative}
+.ib{width:40px;height:40px;border-radius:50%;border:1px solid var(--line2);background:var(--card);display:grid;place-items:center;position:relative;color:var(--ink)}
+.ib:hover{background:#f6f8fb}
+.nd{position:absolute;top:9px;right:10px;width:7px;height:7px;border-radius:50%;background:var(--s3);box-shadow:0 0 0 2px var(--card)}
+.pop{position:absolute;right:0;top:48px;z-index:20;width:290px;background:var(--card);border-radius:16px;box-shadow:0 12px 40px rgba(15,23,42,.16);padding:8px;font-size:13px}
+.pop h3{font-size:13px;padding:6px 8px;color:var(--mut);font-weight:600}
+.pop li{display:grid;grid-template-columns:8px 1fr auto;gap:10px;align-items:baseline;padding:9px 8px;border-radius:10px}
+.pop li:hover{background:#f6f8fb}
+.pop li i{width:8px;height:8px;border-radius:50%;align-self:center}
+.pop small{color:var(--mut)}
+ul,ol{list-style:none;margin:0;padding:0}
+/* 제목 줄 */
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;margin:22px 0 16px}
+h1{font-size:23px;font-weight:700;letter-spacing:-.03em;line-height:1.25}
+h1 span{color:var(--mut);font-weight:500}
+.upd{display:flex;align-items:center;gap:7px;color:var(--ink2);font-size:13px;margin-top:6px}
+.live{width:8px;height:8px;border-radius:50%;background:var(--s0);box-shadow:0 0 0 3px rgba(31,169,113,.18)}
+.hact{display:flex;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;background:var(--card);border:0;box-shadow:var(--sh);font-size:13.5px;font-weight:500;white-space:nowrap}
+.pill.pr{background:var(--brand);color:#fff}
+.pill.pr:hover{background:var(--brand-d)}
+/* 카드 */
+.grid{display:grid;gap:16px}
+.card{background:var(--card);border-radius:var(--r);padding:20px;box-shadow:var(--sh);min-width:0}
+.ch{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:16px}
+h2{font-size:16px;font-weight:650;letter-spacing:-.02em;white-space:nowrap}
+.ch p{color:var(--mut);font-size:12.5px;margin-top:2px}
+.ch .r{font-size:12.5px;color:var(--mut);white-space:nowrap}
+.ch .r b{color:var(--brand);font-weight:700;margin-left:4px}
+/* KPI */
+.kpi{display:grid;grid-template-columns:1fr 1fr;padding:6px;margin-bottom:16px}
+.k{padding:14px}
+.k:nth-child(odd){border-right:1px solid var(--line)}
+.k:nth-child(-n+2){border-bottom:1px solid var(--line)}
+.kl{display:flex;align-items:center;gap:8px;color:var(--ink2);font-size:13px;font-weight:500}
+.ki{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--brand-t);color:var(--brand)}
+.ki .ic{width:16px;height:16px}
+.ki.red{background:#ffe8e9;color:var(--s3)}
+.kv{font-size:27px;font-weight:700;letter-spacing:-.03em;margin-top:10px;line-height:1.1;font-variant-numeric:tabular-nums}
+.kv small{font-size:14px;color:var(--mut);font-weight:500;margin-left:3px;letter-spacing:0}
+.kf{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:12px;color:var(--mut)}
+.dl{display:inline-flex;align-items:center;height:20px;padding:0 7px;border-radius:999px;font-size:11.5px;font-weight:650;font-variant-numeric:tabular-nums}
+.dl.up{background:#ffe8e9;color:#c42b31}
+.dl.dn{background:#e3f6ed;color:#127a4f}
+.dl.nt{background:var(--brand-t);color:var(--brand)}
+/* 상태 칩 */
+.chip{display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px 0 8px;border-radius:999px;font-size:12px;font-weight:650;white-space:nowrap}
+.chip i{width:6px;height:6px;border-radius:50%;background:currentColor}
+.c0{background:#e3f6ed;color:#127a4f}.c1{background:#fff3d4;color:#8a6100}.c2{background:#ffe9da;color:#b2480c}.c3{background:#ffe3e4;color:#c42b31}
+/* 지도 패널 */
+.panel{background:var(--navy);color:#fff;border-radius:var(--r);padding:20px;min-width:0;position:relative;overflow:hidden}
+.panel h2{color:#fff}
+.panel .ch p{color:rgba(255,255,255,.55)}
+.lg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:rgba(255,255,255,.8);justify-content:flex-end}
+.lg li{display:flex;align-items:center;gap:5px}
+.lg i{width:10px;height:10px;border-radius:3px}
+.q0{background:var(--s0)}.q1{background:var(--s1)}.q2{background:var(--s2)}.q3{background:var(--s3)}
+.pb{display:grid;gap:14px}
+.mapbox{position:relative}
+#jm{display:block;width:100%;height:auto;overflow:visible}
+#jm path{stroke:var(--navy);stroke-width:.9;vector-effect:non-scaling-stroke;cursor:pointer;transition:opacity .15s}
+#jm .m0{fill:var(--s0)}#jm .m1{fill:var(--s1)}#jm .m2{fill:var(--s2)}#jm .m3{fill:var(--s3)}
+#jm:hover path{opacity:.82}
+#jm path:hover{opacity:1}
+#jm .hl{fill:none;stroke:#fff;stroke-width:2.2;pointer-events:none}
+#jm .ins{fill:none;stroke:rgba(255,255,255,.22);stroke-dasharray:4 4;vector-effect:non-scaling-stroke}
+#jm text{pointer-events:none;fill:#fff;font-weight:600;paint-order:stroke;stroke:rgba(13,22,51,.55);stroke-width:4px;stroke-linejoin:round}
+#jm .ml{font-size:17px;display:none}
+#jm .il{font-size:15px;fill:rgba(255,255,255,.6);stroke:none;font-weight:500}
+.side{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hc{border-radius:18px;padding:14px;min-width:0}
+.hb{background:var(--brand)}
+.hs{background:#e9eefb;color:var(--ink)}
+.hct{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:500;opacity:.9}
+.hct .ic{width:16px;height:16px}
+.hcv{font-size:26px;font-weight:700;letter-spacing:-.03em;margin:8px 0 2px;line-height:1.15}
+.hcv small{font-size:13px;font-weight:500;opacity:.7;margin-left:5px;letter-spacing:0}
+.hcr{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;opacity:.85;margin-top:6px}
+.hcr b{font-size:17px;font-variant-numeric:tabular-nums}
+.hs .hcr b{color:var(--brand)}
+.hbar{height:6px;border-radius:3px;background:rgba(255,255,255,.25);margin-top:8px;overflow:hidden}
+.hbar i{display:block;height:100%;border-radius:3px;background:#fff}
+.hs .hbar{background:#d3dcf2}.hs .hbar i{background:var(--s3)}
+.sel{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px;padding:10px 12px;border-radius:14px;background:var(--navy2);font-size:13px;min-height:46px}
+.sel .t{color:rgba(255,255,255,.5);font-size:12px}
+.sel b{font-size:14px}
+.sel .c{color:rgba(255,255,255,.6)}
+.sel .v{margin-left:auto;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
+/* Top 5 */
+#top5{display:flex;flex-direction:column}
+.t5 li{display:grid;grid-template-columns:62px 1fr 34px;gap:10px;align-items:center;padding:8px 0;font-size:13px}
+.t5 .n{color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.t5 .b{height:8px;border-radius:4px;background:#f0f3f9;overflow:hidden}
+.t5 .b i{display:block;height:100%;border-radius:4px;background:#d5ddef}
+.t5 li:first-child .b i{background:var(--brand)}
+.t5 li:first-child .n{color:var(--ink);font-weight:600}
+.t5 .v{text-align:right;font-weight:650;font-variant-numeric:tabular-nums}
+.t5 li:first-child .v{color:var(--brand)}
+.sub{border-top:1px solid var(--line);margin-top:14px;padding-top:16px}
+#top5 .t5+.sub{margin-top:auto}
+.t5{margin-bottom:6px}
+.scale{display:flex;gap:2px;height:8px;margin-top:4px}
+.scale i{flex:1;border-radius:4px}
+.scl{display:flex;justify-content:space-between;font-size:11px;color:var(--mut);margin-top:6px;font-variant-numeric:tabular-nums}
+.scn{display:grid;grid-template-columns:repeat(4,1fr);font-size:11.5px;color:var(--ink2);text-align:center;margin-top:2px}
+.sub h3{font-size:13.5px;font-weight:650;margin-bottom:12px;display:flex;justify-content:space-between}
+.sub h3 span{color:var(--mut);font-weight:500;font-size:12px}
+.dist{display:grid;grid-template-columns:52px 1fr 30px;gap:10px;align-items:center;font-size:12.5px;color:var(--ink2);margin-bottom:10px}
+.sb{display:flex;gap:2px;height:22px}
+.sb i{display:block;border-radius:6px;min-width:6px}
+.dist b{text-align:right;color:var(--ink);font-variant-numeric:tabular-nums}
+.dl2{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--ink2);margin-top:4px}
+.dl2 span{display:inline-flex;align-items:center;gap:5px}
+.dl2 i{width:8px;height:8px;border-radius:2px}
+/* 예측 차트 */
+.seg{display:inline-flex;background:#f1f3f8;border-radius:999px;padding:3px}
+.seg button{border:0;background:none;border-radius:999px;padding:6px 14px;font-size:13px;font-weight:500;color:var(--ink2)}
+.seg button[aria-pressed=true]{background:var(--brand);color:#fff;font-weight:600}
+.cbox{position:relative;min-height:220px}
+.cbox svg{display:block;touch-action:pan-y;outline:none}
+.cbox svg:focus-visible{box-shadow:0 0 0 2px var(--brand);border-radius:10px}
+.gl{stroke:var(--line2);stroke-dasharray:3 5}
+.ga{stroke:var(--line2)}
 .tk{font-size:11px;fill:var(--mut);font-variant-numeric:tabular-nums}
-.bl{font-size:11.5px;fill:var(--ink2);font-weight:600}
-.dl{font-size:12px;fill:var(--ink);font-weight:700}
-.bn0{fill:var(--s0);opacity:var(--band)}.bn1{fill:var(--s1);opacity:var(--band)}.bn2{fill:var(--s2);opacity:var(--band)}.bn3{fill:var(--s3);opacity:var(--band)}
-.th{stroke-width:1;opacity:.7}.th1{stroke:var(--s1)}.th2{stroke:var(--s2)}.th3{stroke:var(--s3)}
-.ax{stroke:var(--line2);stroke-width:1}
-.ln{fill:none;stroke:var(--blue);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
-.dt{fill:var(--blue);stroke:var(--card);stroke-width:2}
-.ch{stroke:var(--ink2);stroke-width:1;opacity:.55}
-.tt{position:absolute;z-index:2;pointer-events:none;background:var(--card);border:1px solid var(--line2);border-radius:10px;padding:7px 10px;box-shadow:0 4px 14px rgba(0,0,0,.12);font-size:12.5px;white-space:nowrap;display:grid;gap:2px}
-.tt .td{color:var(--ink2)}
-.tt .tv{display:flex;align-items:center;gap:8px}
-.tt .tv b{font-size:18px}
-.c-sum{font-size:13.5px;color:var(--ink2);margin-top:10px}
-.c-sum b{color:var(--ink)}
-.days{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
-.dy{display:grid;justify-items:center;gap:1px;padding:7px 2px 6px;border-radius:10px;background:var(--bg);font-size:11.5px;color:var(--ink2);cursor:default;line-height:1.35}
-.dy:hover,.dy:focus-visible{outline:1px solid var(--line2)}
-.dy.on{outline:2px solid var(--blue);outline-offset:-2px}
-.dy .si{margin:3px 0 1px}
-.dy b{font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}
-.dy .dn{font-size:11px}
-.more{width:100%;margin-top:12px;padding:10px;border-radius:10px}
-/* 지역 */
-.ctl{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;align-items:center}
-.seg{display:inline-flex;background:var(--bg);border-radius:10px;padding:3px;gap:2px}
-.seg button{border:0;background:none;border-radius:8px;padding:6px 11px;font-size:13.5px;cursor:pointer;color:var(--ink2)}
-.seg button[aria-pressed=true]{background:var(--card);color:var(--ink);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.12)}
-.ctl input,.ctl select{border:1px solid var(--line2);background:var(--card);border-radius:9px;padding:6px 10px;font-size:13.5px;min-width:0}
-.ctl input{flex:1 1 150px}
-.cb{display:flex;gap:2px;height:12px;margin:14px 0 6px}
-.cb i{display:block;height:100%}
-.cb i:first-child{border-radius:4px 0 0 4px}.cb i:last-child{border-radius:0 4px 4px 0}.cb i:only-child{border-radius:4px}
-.cl{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--ink2)}
-.cl span{display:inline-flex;align-items:center;gap:5px}
-.cl b{color:var(--ink)}
-.al{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:0 24px;align-items:start}
-.ah{display:grid;grid-template-columns:minmax(78px,1.2fr) minmax(36px,1fr) 30px 66px 30px;gap:8px;font-size:12px;color:var(--mut);padding:0 6px 6px;border-bottom:1px solid var(--line)}
-.ah span:nth-child(n+3){text-align:right}
-.ar{border-bottom:1px solid var(--line)}
-.ab{width:100%;display:grid;grid-template-columns:minmax(78px,1.2fr) minmax(36px,1fr) 30px 66px 30px;gap:8px;align-items:center;background:none;border:0;padding:10px 6px;text-align:left;cursor:pointer;border-radius:8px}
-.ab:hover{background:var(--hov)}
-.ab:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
-.an b{display:block;font-size:14.5px;line-height:1.3}
-.an small{color:var(--mut);font-size:11.5px}
-.ag{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
-.ag i{display:block;height:100%;border-radius:3px}
-.av{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
-.ab .bd{justify-self:end;font-size:12.5px;padding:2px 8px 2px 6px}
-.ac{text-align:right;font-size:12.5px;color:var(--ink2);font-variant-numeric:tabular-nums}
-.ax2{padding:2px 6px 14px}
-.ax2 .cbox{min-height:150px;margin-top:4px}
-.ax2 p{font-size:13px;color:var(--ink2)}
-.empty{padding:20px 6px;color:var(--mut);font-size:14px}
+.tk.td{fill:var(--ink);font-weight:700}
+.sn{font-size:10.5px;fill:var(--mut)}
+.bar{fill:url(#hp);cursor:pointer}
+.bar.on{fill:url(#ha)}
+.bub rect{fill:var(--navy)}
+.bub path{fill:var(--navy)}
+.bub text{fill:#fff;font-size:12px;font-weight:650}
+.bdot{fill:var(--card);stroke:var(--brand);stroke-width:3}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.facts span{display:inline-flex;align-items:center;gap:6px;background:#f5f7fb;border-radius:999px;padding:6px 12px;font-size:12.5px;color:var(--ink2)}
+.facts b{color:var(--ink);font-variant-numeric:tabular-nums}
+/* 기상 요인 */
+.wx li{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.wx li:last-child{border-bottom:0;padding-bottom:0}
+.wx .ki{width:36px;height:36px}
+.wn{font-size:12.5px;color:var(--ink2)}
+.wv{font-size:17px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.wv small{font-size:12px;color:var(--mut);font-weight:500;margin-left:2px}
+.wc{text-align:right;font-size:11.5px;color:var(--mut);min-width:74px}
+.wc b{display:block;font-size:13px;color:var(--ink);font-variant-numeric:tabular-nums}
+.wm{height:5px;border-radius:3px;background:#f0f3f9;margin-top:4px;overflow:hidden}
+.wm i{display:block;height:100%;background:var(--brand);border-radius:3px}
+/* 표 */
+.tctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.srch{display:flex;align-items:center;gap:6px;height:36px;border-radius:999px;background:#f1f3f8;padding:0 12px;color:var(--mut);flex:1 1 160px;max-width:240px}
+.srch input{border:0;background:none;outline:none;width:100%;color:var(--ink);font-size:13px;min-width:0}
+.srch:focus-within{box-shadow:0 0 0 2px var(--brand-t),inset 0 0 0 1px var(--brand)}
+.srch .ic{width:16px;height:16px}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px}
+th{font-size:12px;font-weight:500;color:var(--mut);text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr.r:hover td{background:#f8f9fc}
+tbody tr.r.op td{background:#f5f8ff;border-bottom-color:transparent}
+.rk{color:var(--mut);font-variant-numeric:tabular-nums;width:28px}
+.nm b{display:block;font-weight:600;font-size:13.5px}
+.nm small{color:var(--mut);font-size:11.5px}
+.ix{display:flex;align-items:center;gap:10px;font-weight:700;font-variant-numeric:tabular-nums}
+.ix i{display:none;width:64px;height:6px;border-radius:3px;background:#f0f3f9;overflow:hidden}
+.ix i:after{content:"";display:block;height:100%;width:var(--w);background:var(--brand);border-radius:3px;opacity:.85}
+.dd{font-variant-numeric:tabular-nums;font-size:12.5px;font-weight:600;white-space:nowrap}
+.dd.up{color:#c42b31}.dd.dn{color:#127a4f}.dd.eq{color:var(--mut)}
+.sp{display:none}
+.go{width:32px;height:32px;border-radius:50%;border:1px solid var(--line2);background:var(--card);display:grid;place-items:center;color:var(--ink2);margin-left:auto}
+.go:hover{color:var(--brand);border-color:var(--brand)}
+.go .ic{width:15px;height:15px;transition:transform .15s}
+.op .go{background:var(--brand);border-color:var(--brand);color:#fff}
+.op .go .ic{transform:rotate(90deg)}
+td.x{padding:0 8px 14px;background:#f5f8ff}
+.xb{background:var(--card);border-radius:16px;padding:12px 12px 10px}
+.xb .cbox{min-height:180px}
+.more{display:block;width:100%;margin-top:12px;height:40px;border-radius:999px;border:1px solid var(--line2);background:var(--card);font-size:13px;font-weight:600;color:var(--ink2)}
+.more:hover{border-color:var(--brand);color:var(--brand)}
+.emp{padding:28px 8px;text-align:center;color:var(--mut)}
 /* 예방수칙 */
-.pv{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:10px}
-.pv li{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start}
-.pv .ic{width:40px;height:40px;border-radius:12px;background:var(--blue-t);display:grid;place-items:center;color:var(--blue)}
-.pv svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.pv b{display:block;font-size:15px}
-.pv span{font-size:13.5px;color:var(--ink2)}
-.src{font-size:12.5px;color:var(--mut);margin-top:12px}
-/* 구조 */
-.flow{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:22px;counter-reset:f}
-.flow li{position:relative;border:1px solid var(--line);border-radius:12px;padding:12px 12px 12px 44px;counter-increment:f}
-.flow li:before{content:counter(f);position:absolute;left:12px;top:12px;width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--card);font-size:12px;font-weight:700;display:grid;place-items:center}
-.flow li:not(:last-child):after{content:"";position:absolute;left:50%;bottom:-17px;width:10px;height:10px;border-right:2px solid var(--line2);border-bottom:2px solid var(--line2);transform:translateX(-50%) rotate(45deg)}
-.flow b{display:block;font-size:14.5px}
-.flow span{font-size:13px;color:var(--ink2)}
-.tag{display:inline-block;font-size:11.5px;font-weight:700;border-radius:5px;padding:0 6px;margin-bottom:4px}
-.keep{background:var(--line);color:var(--ink2)}
-.new{background:var(--blue-t);color:var(--ink)}
-.opt{display:grid;gap:10px;margin-top:16px}
-.o{border:1px solid var(--line);border-radius:12px;padding:14px}
-.o.rec{border:2px solid var(--blue)}
-.o h3{font-size:15px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-.o h3 em{font-style:normal;font-size:11.5px;background:var(--blue);color:#fff;border-radius:5px;padding:0 6px}
-.o ul{margin:8px 0 0;padding-left:18px;font-size:13.5px;color:var(--ink2)}
-.o li{margin:3px 0}
-details{margin-top:12px;font-size:13.5px}
-summary{cursor:pointer;color:var(--ink2)}
-pre{margin:8px 0 0;background:var(--bg);border-radius:10px;padding:12px;overflow-x:auto;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-footer{padding:12px 0 36px;font-size:12.5px;color:var(--mut)}
-footer p+p{margin-top:4px}
+.pv{display:grid;gap:10px}
+.pv li{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center;padding:12px;border-radius:16px;background:#f6f8fb}
+.pv .ki{width:40px;height:40px;background:var(--card);box-shadow:0 1px 2px rgba(15,23,42,.06)}
+.pv .ki .ic{width:19px;height:19px}
+.pv b{display:block;font-size:13.5px;font-weight:650}
+.pv span{font-size:12.5px;color:var(--ink2)}
+.src{font-size:11.5px;color:var(--mut);margin-top:12px}
+/* 데이터 갱신 */
+.pp li{display:grid;grid-template-columns:16px 1fr auto;gap:12px;position:relative;padding:0 0 18px}
+.pp li:last-child{padding-bottom:0}
+.pp li:before{content:"";position:absolute;left:7px;top:14px;bottom:-2px;width:2px;background:var(--line2)}
+.pp li:last-child:before{display:none}
+.pp .d{width:16px;height:16px;border-radius:50%;background:#e3f6ed;display:grid;place-items:center;margin-top:1px}
+.pp .d:after{content:"";width:6px;height:6px;border-radius:50%;background:var(--s0)}
+.pp b{display:block;font-size:13.5px;font-weight:600}
+.pp small{color:var(--mut);font-size:12px}
+.pp .t{font-size:12px;color:var(--ink2);font-variant-numeric:tabular-nums;text-align:right}
+.pp .t em{display:block;font-style:normal;color:#127a4f;font-weight:600}
+.nx{margin-top:16px;padding:12px 14px;border-radius:14px;background:var(--brand-t);font-size:12.5px;color:var(--ink2);display:flex;justify-content:space-between;gap:8px}
+.nx b{color:var(--brand);font-variant-numeric:tabular-nums}
+footer{padding:20px 4px 96px;font-size:12px;color:var(--mut);line-height:1.6}
+footer a{color:inherit}
+/* 하단 탭 (휴대폰) */
+.btm{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.96);border-top:1px solid var(--line2);display:grid;grid-template-columns:repeat(4,1fr);padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
+.btm a{display:grid;justify-items:center;gap:2px;font-size:11px;font-weight:500;color:var(--mut);text-decoration:none;padding:4px 0}
+.btm a .ic{width:21px;height:21px}
+.btm a.on{color:var(--brand);font-weight:650}
 @media (min-width:640px){
- .perf{grid-template-columns:auto repeat(4,1fr);align-items:center}
- .perf .pt{grid-column:auto;display:block}
- .perf .pt small{display:block}
- .wx{grid-template-columns:repeat(4,1fr)}
- .opt{grid-template-columns:1fr 1fr}
- .pv{grid-template-columns:1fr 1fr;gap:14px 20px}
-}
-@media (min-width:960px){
+ .wrap{padding:0 24px}
  h1{font-size:28px}
- .card{padding:22px 22px}
- main{grid-template-columns:5fr 7fr;gap:16px}
- #today{grid-column:1}#trend{grid-column:2;grid-row:1/3}#factors{grid-column:1}
- #area,#prevent,#arch{grid-column:1/-1}
- .al{grid-template-columns:1fr 1fr}
- .ah.h2c{display:grid}
+ .kpi{grid-template-columns:repeat(4,1fr)}
+ .k{border:0!important;padding:16px 20px}
+ .k+.k{border-left:1px solid var(--line)!important}
+ .kv{font-size:30px}
+ .card,.panel{padding:24px}
+ .pb{grid-template-columns:1fr 220px;align-items:center}
+ .side{grid-template-columns:1fr}
+ #jm .ml{display:block}
+ .pv{grid-template-columns:1fr 1fr}
+ .pv li{grid-template-columns:1fr;align-items:start;gap:14px;padding:16px}
+ .ix i{display:block}
+ .sp{display:table-cell}
+}
+@media (min-width:640px) and (max-width:1099px){
+ .grid{grid-template-columns:1fr 1fr;grid-auto-flow:row dense}
+ #map,#fc,#rp{grid-column:1/-1}
+}
+@media (min-width:900px){
+ .top{padding:10px 10px 10px 22px}
+ .tabs{display:flex}
+ .btm{display:none}
+ footer{padding-bottom:40px}
+}
+@media (min-width:1100px){
+ .grid{grid-template-columns:repeat(12,1fr);gap:20px}
+ .kpi{margin-bottom:20px}
+ #map,#fc,#pv{grid-column:span 8}
+ #top5,#wx,#pipe{grid-column:span 4}
+ #rp{grid-column:1/-1}
+ .pb{grid-template-columns:1fr 230px}
  .pv{grid-template-columns:repeat(3,1fr)}
- .flow{grid-template-columns:repeat(4,1fr);gap:28px}
- .flow li:not(:last-child):after{left:auto;right:-21px;top:50%;bottom:auto;transform:translateY(-50%) rotate(-45deg)}
- .wx{grid-template-columns:1fr 1fr}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<div class="demo"><div class="wrap"><b>예시 데이터</b><span>제안용 데모 화면입니다. 화면의 모든 수치·단계·날짜는 예시이며 실제 예측값이 아닙니다.</span></div></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<pattern id="hp" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="#e4ebff"/><rect width="2.5" height="7" fill="#d2ddff"/></pattern>
+<pattern id="ha" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="#2457f5"/><rect width="2.5" height="7" fill="#1d4be0"/></pattern>
+</defs></svg>
+<div class="band"><div class="wrap"><span><b>예시 데이터</b>제안용 시연 화면</span><span id="perf" title="첫 화면 표시 시간 · HTML 전송량 (글꼴 제외)"></span></div></div>
 <div class="wrap">
-<header>
- <h1>제주 SFTS 위험예측</h1>
- <p class="sub">진드기 매개 감염병(중증열성혈소판감소증후군) · 2026.10.21(수) 06:00 갱신 <span class="ex">예시</span></p>
- <nav aria-label="바로가기"><a href="#today">오늘 단계</a><a href="#factors">기상 요인</a><a href="#trend">14일 예측</a><a href="#area">읍면동별</a><a href="#prevent">예방수칙</a><a href="#arch">제안 구조</a></nav>
- <div class="perf" aria-live="polite">
-  <div class="pt">이 페이지 실측<small>지금 이 기기·통신 환경 기준</small></div>
-  <div><b id="p1">…</b>첫 화면 표시</div>
-  <div><b id="p2">…</b>로딩 완료</div>
-  <div><b id="p3">…</b>전송량</div>
-  <div><b id="p4">…</b>추가 요청</div>
+<header class="top">
+ <a class="logo" href="#dash" aria-label="진드기알리미 홈"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="9" fill="#2457f5"/><circle cx="15" cy="15" r="7" fill="none" stroke="#fff" stroke-width="2.6"/><circle cx="15" cy="15" r="2.4" fill="#fff"/><path d="M15 3.5v4" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>진드기알리미</a>
+ <nav class="tabs" aria-label="메뉴"><a href="#dash" class="on">대시보드</a><a href="#map">지도</a><a href="#fc">예측</a><a href="#rp">리포트</a></nav>
+ <div class="tools">
+  <button class="ib" id="bS" type="button" aria-label="읍면동 검색"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+  <button class="ib" id="bB" type="button" aria-label="알림 3건" aria-expanded="false" aria-controls="pop"><svg class="ic" viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><i class="nd"></i></button>
+  <div class="pop" id="pop" hidden><h3>알림</h3><ul>
+   <li><i class="q3"></i><span>구좌읍 <b>위험</b> 단계 진입</span><small>06:06</small></li>
+   <li><i class="q3"></i><span>표선면 <b>위험</b> 3일째 유지</span><small>06:06</small></li>
+   <li><i class="q0"></i><span>오늘 예측 갱신 완료</span><small>06:05</small></li>
+  </ul></div>
  </div>
 </header>
-<main>
- <section class="card hero" id="today" aria-labelledby="t-today"></section>
- <section class="card" id="trend" aria-labelledby="t-trend">
-  <div class="c-head"><div><h2 id="t-trend">앞으로 14일 위험 예측 <span class="ex">예시</span></h2><p class="lead">제주 전체 · 위험지수(0~100)와 단계 기준선. 그래프를 누르거나 날짜 칸에 올리면 값이 보입니다.</p></div></div>
+
+<section class="head" id="dash" aria-label="개요">
+ <div><h1>SFTS 위험 현황 <span>제주 전체</span></h1><p class="upd"><i class="live"></i>2026.10.21 (수) 06:00 갱신</p></div>
+ <div class="hact">
+  <span class="pill"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>10.21 – 11.03</span>
+  <button class="pill pr" id="bSh" type="button"><svg class="ic" viewBox="0 0 24 24"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v13"/></svg><span>공유</span></button>
+ </div>
+</section>
+
+<section class="card kpi" id="kpi" aria-label="주요 지표"></section>
+
+<div class="grid">
+ <section class="panel" id="map" aria-labelledby="h-map">
+  <div class="ch"><div><h2 id="h-map">읍면동 위험 지도</h2><p>43개 읍면동 · 오늘</p></div>
+   <ul class="lg" aria-label="범례"><li><i class="q0"></i>관심</li><li><i class="q1"></i>주의</li><li><i class="q2"></i>경고</li><li><i class="q3"></i>위험</li></ul></div>
+  <div class="pb">
+   <div class="mapbox"><svg id="jm" role="img" aria-label="제주 읍면동 위험 단계 지도"></svg></div>
+   <div class="side" id="side"></div>
+  </div>
+  <div class="sel" id="sel" aria-live="polite"></div>
+ </section>
+
+ <section class="card" id="top5" aria-labelledby="h-t5">
+  <div class="ch"><h2 id="h-t5">위험 상위 5곳</h2><span class="r" id="t5avg"></span></div>
+  <ol class="t5" id="t5"></ol>
+  <div class="sub"><h3>시별 단계 분포 <span>읍면동 수</span></h3><div id="dist"></div></div>
+  <div class="sub"><h3>단계 기준 <span>위험지수</span></h3><div class="scale" aria-hidden="true"><i class="q0"></i><i class="q1"></i><i class="q2"></i><i class="q3"></i></div><div class="scl" aria-hidden="true"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div><p class="scn"><span>관심</span><span>주의</span><span>경고</span><span>위험</span></p></div>
+ </section>
+
+ <section class="card" id="fc" aria-labelledby="h-fc">
+  <div class="ch"><div><h2 id="h-fc">위험지수 예측</h2><p>제주 전체 · 0–100</p></div>
+   <div class="seg" role="group" aria-label="기간"><button type="button" data-n="7" aria-pressed="false">7일</button><button type="button" data-n="14" aria-pressed="true">14일</button></div></div>
   <div class="cbox" id="cmain"></div>
-  <p class="c-sum" id="csum"></p>
-  <ol class="days" id="days" aria-label="날짜별 예측값 (예시)"></ol>
+  <div class="facts" id="facts"></div>
  </section>
- <section class="card" id="factors" aria-labelledby="t-fac">
-  <h2 id="t-fac">주요 기상 요인 <span class="ex">예시</span></h2>
-  <p class="lead">2주 시차 모델: 지난 14일(10/7~10/20) 관측 기상으로 앞으로 14일 위험을 예측합니다.</p>
-  <div class="wx" id="wx"></div>
+
+ <section class="card" id="wx" aria-labelledby="h-wx">
+  <div class="ch"><div><h2 id="h-wx">기상 요인</h2><p>10.7 – 10.20 관측</p></div><span class="r">예측 기여도</span></div>
+  <ul class="wx" id="wxl"></ul>
  </section>
- <section class="card" id="area" aria-labelledby="t-area">
-  <h2 id="t-area">읍면동별 위험도 <span class="ex">예시</span></h2>
-  <p class="lead">지역을 누르면 그 지역의 14일 예측이 열립니다.</p>
-  <div class="ctl">
-   <div class="seg" role="group" aria-label="시 선택"><button type="button" data-c="-1" aria-pressed="true">전체</button><button type="button" data-c="0" aria-pressed="false">제주시</button><button type="button" data-c="1" aria-pressed="false">서귀포시</button></div>
-   <select id="sort" aria-label="정렬"><option value="d">위험도 높은 순</option><option value="a">위험도 낮은 순</option><option value="n">이름순</option></select>
-   <input id="q" type="search" placeholder="읍면동 검색 (예: 애월)" aria-label="읍면동 검색">
-  </div>
-  <div id="cnt"></div>
-  <ul class="al" id="al"></ul>
-  <button type="button" class="btn more" id="more" hidden></button>
+
+ <section class="card" id="rp" aria-labelledby="h-rp">
+  <div class="ch" style="flex-wrap:wrap"><div><h2 id="h-rp">읍면동별 위험도</h2><p id="rpc"></p></div>
+   <div class="tctl">
+    <div class="seg" role="group" aria-label="시 선택" id="city"><button type="button" data-c="-1" aria-pressed="true">전체</button><button type="button" data-c="0" aria-pressed="false">제주시</button><button type="button" data-c="1" aria-pressed="false">서귀포시</button></div>
+    <label class="srch"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="읍면동 검색" aria-label="읍면동 검색"></label>
+   </div></div>
+  <div style="overflow-x:auto"><table>
+   <thead><tr><th class="rk">#</th><th>읍면동</th><th>위험지수</th><th>단계</th><th>전일</th><th class="sp">14일 추이</th><th><span hidden>상세</span></th></tr></thead>
+   <tbody id="tb"></tbody>
+  </table></div>
+  <button type="button" class="more" id="more" hidden></button>
  </section>
- <section class="card" id="prevent" aria-labelledby="t-pv">
-  <h2 id="t-pv">SFTS 예방수칙</h2>
-  <p class="lead">아직 예방 백신이 없어서 진드기에 물리지 않는 것이 가장 중요합니다.</p>
+
+ <section class="card" id="pv" aria-labelledby="h-pv">
+  <div class="ch"><h2 id="h-pv">예방수칙</h2><span class="r">질병관리청 안내 요약</span></div>
   <ul class="pv">
-   <li><div class="ic"><svg viewBox="0 0 24 24"><path d="M8 3 4 5l-2 5 3 1.5L6 10v11h12V10l1 1.5 3-1.5-2-5-4-2a4 4 0 0 1-8 0z"/></svg></div><div><b>긴 옷 입기</b><span>밭일·성묘·등산 때 긴팔, 긴바지, 모자, 장갑, 장화를 착용하세요.</span></div></li>
-   <li><div class="ic"><svg viewBox="0 0 24 24"><rect x="7" y="9" width="9" height="12" rx="2"/><path d="M9 9V5h5v4M14 6h3M19.5 4.5h.01M19.5 7.5h.01M21.5 6h.01"/></svg></div><div><b>기피제 사용</b><span>진드기 기피제를 옷과 드러난 피부에 뿌리세요.</span></div></li>
-   <li><div class="ic"><svg viewBox="0 0 24 24"><path d="M2 20h20M5 20c0-5 1-8 3-10M10 20c0-6 1-10 3-14M15 20c0-4 1.5-7 4-9"/></svg></div><div><b>풀밭에 바로 앉지 않기</b><span>돗자리를 쓰고, 옷을 풀밭에 벗어 두지 마세요. 쓴 돗자리는 털어서 씻어 두세요.</span></div></li>
-   <li><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21V3M12 5h7l2 2.5-2 2.5h-7M12 12H5l-2 2.5L5 17h7"/></svg></div><div><b>정해진 길로 다니기</b><span>등산로나 산책로를 벗어나 풀숲에 들어가지 마세요.</span></div></li>
-   <li><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 21V7a3 3 0 0 1 3-3h1a3 3 0 0 1 3 3v1M7.5 8.5h7M9 12v.01M12 12v.01M15 12v.01M10.5 15v.01M13.5 15v.01M12 18v.01"/></svg></div><div><b>집에 오면 바로 씻고 세탁</b><span>머리카락, 귀 주변, 겨드랑이, 허리, 무릎 뒤에 진드기가 붙어 있는지 살펴보세요.</span></div></li>
-   <li><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></svg></div><div><b>2주 안에 열이 나면 병원</b><span>야외활동 뒤 2주 안에 고열, 구토, 설사가 있으면 병원에 가서 야외활동 사실을 알리세요. 물린 진드기는 억지로 떼지 마세요.</span></div></li>
+   <li><span class="ki"><svg class="ic" viewBox="0 0 24 24"><path d="M8 3 4 5l-2 5 3 1.5L6 10v11h12V10l1 1.5 3-1.5-2-5-4-2a4 4 0 0 1-8 0z"/></svg></span><div><b>긴 옷 착용</b><span>긴팔·긴바지·장갑·장화</span></div></li>
+   <li><span class="ki"><svg class="ic" viewBox="0 0 24 24"><rect x="7" y="9" width="9" height="12" rx="2"/><path d="M9 9V5h5v4M14 6h3M19.5 4.5h.01M19.5 7.5h.01M21.5 6h.01"/></svg></span><div><b>기피제 사용</b><span>옷과 드러난 피부에</span></div></li>
+   <li><span class="ki"><svg class="ic" viewBox="0 0 24 24"><path d="M2 20h20M5 20c0-5 1-8 3-10M10 20c0-6 1-10 3-14M15 20c0-4 1.5-7 4-9"/></svg></span><div><b>풀밭에 앉지 않기</b><span>돗자리 사용 후 세척</span></div></li>
+   <li><span class="ki"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21V3M12 5h7l2 2.5-2 2.5h-7M12 12H5l-2 2.5L5 17h7"/></svg></span><div><b>정해진 길로</b><span>풀숲 진입 자제</span></div></li>
+   <li><span class="ki"><svg class="ic" viewBox="0 0 24 24"><path d="M4 21V7a3 3 0 0 1 3-3h1a3 3 0 0 1 3 3v1M7.5 8.5h7M9 12v.01M12 12v.01M15 12v.01M10.5 15v.01M13.5 15v.01M12 18v.01"/></svg></span><div><b>귀가 후 샤워·세탁</b><span>머리·귀·겨드랑이·무릎 뒤 확인</span></div></li>
+   <li><span class="ki red"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></svg></span><div><b>2주 내 발열 시 진료</b><span>야외활동 사실 알리기 · 1339</span></div></li>
   </ul>
-  <p class="src">질병관리청 진드기 매개 감염병 예방 안내를 바탕으로 요약했습니다. 실서비스에서는 최신 공식 문구로 맞춥니다. 문의: 질병관리청 콜센터 1339</p>
  </section>
- <section class="card" id="arch" aria-labelledby="t-arch">
-  <h2 id="t-arch">제안 구조</h2>
-  <p class="lead">수집·예측 코드는 그대로 두고, 결과를 하루 한 번 미리 계산해 가벼운 파일로 내보냅니다. 화면은 계산을 기다리지 않고 파일만 읽어서 바로 뜹니다.</p>
-  <ol class="flow">
-   <li><span class="tag keep">기존 그대로</span><b>기상청 자료 수집</b><span>지금 돌아가는 자동 수집 코드</span></li>
-   <li><span class="tag keep">기존 그대로</span><b>GBM 예측을 하루 1회 미리 계산</b><span>매일 새벽 자동 실행 (서버 예약 작업 또는 GitHub Actions)</span></li>
-   <li><span class="tag new">이번 작업</span><b>JSON 파일로 저장</b><span>오늘 단계·14일 예측·읍면동 값. 수 KB 크기</span></li>
-   <li><span class="tag new">이번 작업</span><b>CDN 정적 웹</b><span>이 화면. 서버 계산 없이 가까운 CDN에서 바로 전달</span></li>
+
+ <section class="card" id="pipe" aria-labelledby="h-pp">
+  <div class="ch"><h2 id="h-pp">데이터 갱신</h2><span class="r">매일 06:00</span></div>
+  <ol class="pp">
+   <li><span class="d"></span><div><b>기상청 관측 수집</b><small>ASOS · 14일</small></div><span class="t">06:00<em>정상</em></span></li>
+   <li><span class="d"></span><div><b>GBM 예측</b><small>2주 시차 · 43개 읍면동</small></div><span class="t">06:04<em>정상</em></span></li>
+   <li><span class="d"></span><div><b>JSON 생성</b><small>forecast.json · 9.6KB</small></div><span class="t">06:05<em>정상</em></span></li>
+   <li><span class="d"></span><div><b>CDN 배포</b><small>정적 호스팅</small></div><span class="t">06:06<em>정상</em></span></li>
   </ol>
-  <div class="opt">
-   <div class="o rec"><h3>A안 · 정적 웹 + JSON <em>추천</em></h3><ul><li>화면과 데이터를 CDN이 바로 전달해서 서버 대기가 없습니다.</li><li>무료 호스팅 범위 안에서 운영할 수 있습니다.</li><li>서버가 없어서 잠들거나 멈출 걱정이 없습니다.</li><li>한계: 하루 1회 갱신(횟수는 늘릴 수 있음). 화면에서 조건을 바꿔 새로 계산하는 기능은 맞지 않습니다.</li></ul></div>
-   <div class="o"><h3>B안 · FastAPI</h3><ul><li>같은 JSON을 API로 내려주고, 화면은 그대로 씁니다.</li><li>로그인, 기관별 화면, 조건을 바꿔 다시 계산하기가 필요할 때 맞습니다.</li><li>서버 운영비와 관리가 필요합니다.</li><li>A안으로 시작해도 나중에 B안으로 넓힐 수 있습니다.</li></ul></div>
-  </div>
-  <details><summary>화면이 읽는 JSON 예시 보기</summary><pre>{
-  "updated": "2026-10-21T06:00:00+09:00",
-  "jeju": { "index": 56, "stage": "경고" },
-  "forecast": [ { "date": "2026-10-21", "index": 56 }, … ],
-  "weather": [ { "name": "평균 기온", "value": 19.4, "unit": "℃" }, … ],
-  "areas": [ { "name": "표선면", "city": "서귀포시", "index": 82 }, … ]
-}</pre></details>
-  <p class="src">Streamlit 화면은 내부 분석용으로 그대로 두셔도 됩니다.</p>
+  <div class="nx"><span>다음 갱신</span><b>10.22 (목) 06:00</b></div>
  </section>
-</main>
+</div>
+
 <footer>
- <p>위시켓 프로젝트 지원용 데모입니다. 프레임워크·웹폰트·외부 파일 없이 HTML 한 파일로 만들었습니다.</p>
- <p>모든 위험지수·단계·기상 수치·지역 값은 예시 데이터이며, 실제 예측 결과나 의뢰인 자료와 관계없습니다.</p>
+ <p>예시 데이터 · 화면의 모든 수치는 실제 예측값이 아닙니다. 경계: 통계청 SGIS 행정동 경계(공공누리 제1유형), <a href="https://github.com/vuski/admdongkor" rel="noopener">vuski/admdongkor</a> 가공(CC BY 4.0)</p>
 </footer>
 </div>
-<noscript><p class="wrap">그래프와 목록을 보려면 자바스크립트를 켜 주세요.</p></noscript>
+
+<nav class="btm" aria-label="메뉴">
+ <a href="#dash" class="on"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>대시보드</a>
+ <a href="#map"><svg class="ic" viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg>지도</a>
+ <a href="#fc"><svg class="ic" viewBox="0 0 24 24"><path d="M4 20V11M10 20V5M16 20v-6M2 20h20"/></svg>예측</a>
+ <a href="#rp"><svg class="ic" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM14 3v6h6M8 13h8M8 17h5"/></svg>리포트</a>
+</nav>
+<noscript><p class="wrap">지도와 그래프를 보려면 자바스크립트를 켜 주세요.</p></noscript>
 <script>
 (function(){
 'use strict';
-/* ===== 예시 데이터 (실서비스에서는 매일 만들어지는 JSON 파일을 읽습니다) ===== */
-var J=[56,58,59,57,55,53,51,49,47,45,43,41,39,37];
-var WX=[
- ['평균 기온','19.4','℃','평년보다 1.3℃ 높음',42,'<path d="M10 14.5V4.5a2 2 0 1 1 4 0v10a4 4 0 1 1-4 0z"/><path d="M12 11v6"/>'],
- ['평균 습도','74','%','평년보다 3%p 높음',27,'<path d="M12 3s6 6.6 6 11a6 6 0 0 1-12 0c0-4.4 6-11 6-11z"/>'],
- ['누적 강수량','38','mm','평년보다 12mm 적음',19,'<path d="M7 14a4 4 0 0 1 .4-8 5.5 5.5 0 0 1 10.6 1.6A3.3 3.3 0 0 1 17.5 14z"/><path d="M8 17.5 7 20M12 17.5 11 20M16 17.5 15 20"/>'],
- ['평균 풍속','3.4','m/s','평년과 비슷',12,'<path d="M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/>']
-];
-var A=[
- ['일도1동',0,22],['일도2동',0,27],['이도1동',0,21],['이도2동',0,30],['삼도1동',0,24],['삼도2동',0,19],['용담1동',0,23],['용담2동',0,33],['건입동',0,26],['화북동',0,41],['삼양동',0,44],['봉개동',0,63],['아라동',0,58],['오라동',0,52],['연동',0,34],['노형동',0,47],['외도동',0,43],['이호동',0,38],['도두동',0,36],
- ['한림읍',0,66],['애월읍',0,71],['구좌읍',0,76],['조천읍',0,73],['한경면',0,64],['추자면',0,29],['우도면',0,48],
- ['송산동',1,37],['정방동',1,28],['중앙동',1,25],['천지동',1,27],['효돈동',1,55],['영천동',1,61],['동홍동',1,46],['서홍동',1,51],['대륜동',1,49],['대천동',1,57],['중문동',1,53],['예래동',1,50],
- ['대정읍',1,68],['남원읍',1,79],['성산읍',1,77],['안덕면',1,72],['표선면',1,82]
-];
-var CITY=['제주시','서귀포시'];
-var ST=[
- {n:'관심',k:'1단계',m:'평소처럼 예방수칙을 지키면 됩니다.'},
- {n:'주의',k:'2단계',m:'풀밭에 갈 때는 긴 옷과 진드기 기피제를 챙기세요.'},
- {n:'경고',k:'3단계',m:'밭일·성묘·등산 때 긴 옷과 기피제, 귀가 후 샤워를 꼭 지키세요.'},
- {n:'위험',k:'4단계',m:'풀숲 작업은 되도록 줄이고, 2주 안에 열이 나면 바로 병원에 가세요.'}
-];
-var B=[0,25,50,75,100];
-var WD='일월화수목금토';
-
+/* 예시 데이터 — 실서비스에서는 매일 생성되는 JSON을 읽습니다 */
+var D={
+ date:[2026,9,21],
+ jeju:[56,58,59,57,55,53,51,49,47,45,43,41,39,37],
+ yday:54,
+ wx:[['평균 기온','19.4','℃','+1.3',42,'<path d="M14 14.8V4.5a2 2 0 0 0-4 0v10.3a4.5 4.5 0 1 0 4 0z"/>'],
+     ['평균 습도','74','%','+3',27,'<path d="M12 3s6 6.6 6 11a6 6 0 0 1-12 0c0-4.4 6-11 6-11z"/>'],
+     ['누적 강수','38','mm','−12',19,'<path d="M7 14a4 4 0 0 1 .4-8 5.5 5.5 0 0 1 10.6 1.6A3.3 3.3 0 0 1 17.5 14z"/><path d="M8 17.5 7 20M12 17.5 11 20M16 17.5 15 20"/>'],
+     ['평균 풍속','3.4','m/s','±0',12,'<path d="M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/>']],
+ areas:{'일도1동':22,'일도2동':27,'이도1동':21,'이도2동':30,'삼도1동':24,'삼도2동':19,'용담1동':23,'용담2동':33,'건입동':26,'화북동':41,'삼양동':44,'봉개동':63,'아라동':58,'오라동':52,'연동':34,'노형동':47,'외도동':43,'이호동':38,'도두동':36,'한림읍':66,'애월읍':71,'구좌읍':76,'조천읍':73,'한경면':64,'추자면':29,'우도면':48,'송산동':37,'정방동':28,'중앙동':25,'천지동':27,'효돈동':55,'영천동':61,'동홍동':46,'서홍동':51,'대륜동':49,'대천동':57,'중문동':53,'예래동':50,'대정읍':68,'남원읍':79,'성산읍':77,'안덕면':72,'표선면':82}
+};
+var MAP={"w":975,"h":643,"inset":[20,20,124,145],"f":[["한림읍",0,"M108 231l1-8-4-3-7 1-1 2 0 6 3 2zM184 171l-5 5-4 0-4-3-6 4-3-1-2 3-4 4-3 0-10 2-2 4 3 11-5 1-2 6 0 6 3-1 2-5 2 8-5 1-3 3-2 1-4 5-2 4 1 5-3 1-3-1-4 1-1 3 1 5-5-1-5 8-4-4-3 4-5-1-2 5-10 8 2 5-2 3 4 3 1 5 0 5 9 3 4 6 6 4 3 6 4 14 6-5 4-2 2 5-1 4 4 2 8-7 6 1 0 3 11 8 9 10 6 3 8 7 4 3 4 0 4-3 19-7 2 2 3-1 4-6 4-3 6-8 3-3 6-3 7 3 23-1 2-4 5-3-10-3-14-7-8-6-4-2-10-8-1-1-10-12-3-5-1-6 1-6-2-2-4-2-3-4-7-9-1-9-2-3-4-7-2-6 2-14-3-2-1-5 0-4-2-6 1-5 0-3z",169,270],["애월읍",0,"M275 311l7 1 12 4 4-1 6 0 11 4 10 5 12 0 6-3 5-5 1-7-1-7 5-5 7-2 13 1 8 0 5 1 5 2 6-4 5 0 6 6 11-7 4 1 3 1 4-1 4-4 7 2 5-1 6-3 2 2 0-3-4-3-2-6-17-18-8 0-13-10-11 3-7 0-4-4-15-7-1-7 1-2-3-5-6-4-2-5-2-23-1-6 2-4 2-7-3-8-2-4-1-6 3-10-4-6 1-3 0-4-3-7-5 0-8 4-5 0-6-2-4-7 2-7 1-6-2-5-1 4-5-1-7 2-2 5-3-1-7 3-4 0-4-7-3-1-7 2-4 6-2-1-11 8-10-2-7 3-2 5-5 1-7 3-3 5-4 2-3-2-8-2-6 2-5 0-4-2-6 4 1 5 2 4-6 12-4 1-3 4-3 0 3 3 0 3-1 5 2 6 0 4 1 5 3 2-2 14 2 6 4 7 2 3 1 9 7 9 3 4 4 2 2 2-1 6 1 6 3 5 10 12 1 1 10 8 4 2 8 6 14 7z",297,222],["구좌읍",0,"M889 121l1-5 3 3 4-2 7 2 2-3-2-4-4-1-1-4 3-3-1-6 2-2-2-9-7-5-9 1-1-2 6-4-3-3 5-1 1-4-4-1-1-6-6 2-6-6-7 0-15-1-2-2-6 1-2 2-1 4-4 1-4-2 2-4-1-1-6 0-2-5-7 1-3-3 0-3-3-1-6-5-5-7 0-6-3-3 0-9-8 0-6-2-2-2-7 6-2-2-6 1-2 4-4-2-2-3-7-3-6-5-3 0-12 0-5-1-5 2-1 3 0 4-6 2-1-1-7-2-10 3-8-1-5-4-7 4-6 1 0 4-3 2-3-1-7 0-2 2 1 10-3 5 1 6 4 7 8 7 0 5 5 8 8 9 3 8 4 3-1 12 1 6-1 9-3 8-2 10-3 6 1 7 2 3 0 4-7 9 0 2 2 14 4 7 9 13 1 3 12 7 6 2 4-2 6 0 5-3 11-10 4-2 4-4 5-4 7-9 5 0 4 1 10-4 6-3 6-1 1-3 6 3 4-3-1-6 6-2 9-6 11-5 9-1 4-6 5-3 4 0 3-3 9-4 2-3 12-7 10-3z",764,100],["조천읍",0,"M658 24l-9 0-3 3-5-2-3 3-5 1-3-4-6 1-3 10-8 1-4-4-5-2 0-4-13-6-5 2-3 5-4 2 2 5-5 0-2 5 2 2-1 5-4-1-3-3-6 0-6 2-6 0-1 3-7 0-2 2 0 5-4 5-1 5 3 6 12 4 10 3-1 8 1 14 3 8 6 5 10 18 1 4-1 6 2 6 3 4 1 7-1 18 3 4 4 7-5 11-5 3-11 5-5 6-2 3-4 3-5 11 1 4-4 6-3 3-8 5-6-2-8 5-7 3-5 4-14 8-10 0-2 7 0 6 13-1 8 1 5-1 13-3 12-9 6-3 4 0 10-3 4 1 4-8 8-6 3 1 16-2 3 0 3-7 9-4 3 0 5 5 3 1 17-2 2-6 0-8-1-3 4-1 6-6 13-7 6-1 6 1 8-3 10-2-9-13-4-7-2-14 0-2 7-9 0-4-2-3-1-7 3-6 2-10 3-8 1-9-1-6 1-12-4-3-3-8-8-9-5-8 0-5-8-7-4-7-1-6 3-5zM649 23l1-3-3-4-3 4 3 3z",614,137],["한경면",0,"M12 362l5-2-3-4-8 3 1 3zM85 270l-3 1-6 4 0 4-5 5-4-1-2 2-9 2-8 6-2 3 1 5-2 9-4-1-8 2-3 5-1 6-3-1-3 4 1 5 3 1-1 4 0 7 4 3 2 7-3 8-2 3 2 9 2 5-6 4-2 5 3 5-1 5 3 3 3 0 3 2 4-5-1-5 6-5 9-1 9-2 0-5 12 3 11 6 11 6 11 5 13 13 3-1-1-11 0-2 5-6 8-5 8-3 9-2 4-8 10-9 5-6 9-6 8-4-4 0-4-3-8-7-6-3-9-10-11-8 0-3-6-1-8 7-4-2 1-4-2-5-4 2-6 5-4-14-3-6-6-4-4-6-9-3 0-5-1-5z",92,344],["추자면",0,"M110 165l2-6-1-2-5-2 2 5-1 3zM131 101l-1-2-6-1-5 1-2 4-7 2-3 0-6-4-7 3-7-2-2 5 4 3 6 3-1 1 7 6 4 14 2 1 8 0 1-4-2-3-3 0-1-8 5-4 4 0 11-3 1-4-4-3-1-2zM78 86l-3-1-11-3-2 4 4 1 3 3-1 4 1 2 10 9 4-1 2-3-1-5-2-3-6-1 6-3zM139 61l-4-2-1 5 7 1 3-2zM112 59l0-3-3-2-4 0 3 4zM25 58l4-3-3-4-2 0-4 4zM125 20l-7 3 4 4 10 0 5 4 5-2-1-2-7-5-6 1z",103,98],["우도면",0,"M953 77l4-3 0-2-8-10-6 1-4 4 1 4 2 1-2 5-4 3-4 9 0 3 2 3 2 7-1 4 5 2 10 3 3-2 6 4 3 0 3-4 1-6 2-3-1-5-3-4 0-10 5 1 0-5-6-2-1 2-9 3z",950,90],["일도1동",0,"M457 81l-4-3-5-1 0 5 3-1 1 4 5-2z",452,81],["일도2동",0,"M452 85l2 5 7 4 4-3 5 5 4 6 4-2 4 3 2-5 0-5-3 1-5-3-6-6 4-1-3-3-6-2-8 2 0 2z",468,90],["이도1동",0,"M448 82l-1 4 3 5-1 2 1 6 4-1 7-4-7-4-2-5-1-4z",452,91],["이도2동",0,"M461 94l-7 4-4 1-1 3-5 0 1 4-3 6 0 5-2 4 3 8 3 3 9-1 3-7-1-4 7-1 5-3 0-9 7 3 2 3 3 0 2-4-2-2 1-4-4-3-4 2-4-6-5-5z",458,111],["삼도1동",0,"M449 93l-6 0 0-9-3 2-3 6 1 7 1 2 5 1 5 0 1-3z",443,95],["삼도2동",0,"M448 77l1-4-9-2-1 2 0 4 4 7 0 9 6 0 1-2-3-5 1-4z",445,81],["용담1동",0,"M443 84l-4-7 0-4-2 3 0 4-3 6-1 9 1 4 4 0-1-7 3-6z",437,87],["용담2동",0,"M437 76l-6 0-9-2-3-4-4-1-7 2-5 3-3 5 1 3 6 4 3 6 2 6-2 1 1 9 3-5 6-2 7-2 7 0-1-4 1-9 3-6z",419,85],["건입동",0,"M457 81l8-2 6 2 3 3-4 1 6 6 5 3 3-1 2-4-10-6 5-3-4-7 0-3 2-4-7 1 1-6-7-5-5 9-9 7-3 1-1 4 5 1z",468,75],["화북동",0,"M482 103l-1 4 2 2-2 4 4 5 9-1 1-2-2-5 1-3 8-2 6-3 6 0-4-6-4-9 4-2 2-11-1-5-5-6-4 0-5 2-5-4-4 7-4 1-7 1 0 3 4 7-5 3 10 6-2 4 0 5z",495,87],["삼양동",0,"M540 50l0-2-7-1-7 5-4 2-2 5-2 2-3 0-5-2-3-1-1 5 5 6 1 5-2 11-4 2 4 9 4 6 1 1 4 2 10 2 7-7-2-7 3-2 5 1 4-2 4-10 0-5-12-4-3-6 1-5 4-5z",527,78],["봉개동",0,"M550 75l0 5-4 10-4 2-5-1-3 2 2 7-7 7-10-2-4-2 0 5 7 9 0 4-6 1 0 4-7 0 1 6 6 5 2 3 0 5 1 3-1 6 2 6 5 10-1 9 2 5 0 5 4 8-2 2-4 17 2 8 4 8 2 2 0 5-3 3-3 8 8-5 6 2 8-5 3-3 4-6-1-4 5-11 4-3 2-3 5-6 11-5 5-3 5-11-4-7-3-4 1-18-1-7-3-4-2-6 1-6-1-4-10-18-6-5-3-8-1-14 1-8z",550,162],["아라동",0,"M454 291l6-2 2 2 4-4 2-2 8-7 4-2 8 2 0-6 2-7 10 0 14-8 5-4 7-3 3-8 3-3 0-5-2-2-4-8-2-8 4-17 2-2-4-8 0-5-2-5 1-9-5-10-2-6 1-6-1-3 0-5-2-3-6-5-1-6 7 0 0-4 6-1 0-4-7-9 0-5-1-1-6 0-6 3-8 2-1 3 2 5-1 2-9 1-4-5-3 0-2-3-7-3 0 9-5 3-7 1 1 4-3 7-9 1-3-3-3 4-2 6 2 9-1 10 2 8 1 3 7 9 3 9 6 7 3 6 0 4 5 5-4 10 1 4 2 2-1 3 1 6-2 7-3 2-2 5-7 9-2 3-1 9 2 5-2 5 2 6 4 3z",486,192],["오라동",0,"M444 102l-5-1-1-2-4 0-7 0-7 2 2 2 0 17-2 9 2 5 0 7-1 6 3 5-4 14 2 7 1 18 3 9 0 7 3 7-1 9-2 1-5-7 6 12 1 11 1 2 6 2 8 8 3 2 0 16 4 4-2-5 1-9 2-3 7-9 2-5 3-2 2-7-1-6 1-3-2-2-1-4 4-10-5-5 0-4-3-6-6-7-3-9-7-9-1-3-2-8 1-10-2-9 2-6 3-4-3-8 2-4 0-5 3-6z",439,186],["연동",0,"M411 108l-5-1-7-4-5 2 2 5 8 8 2 6-1 12 1 10 1 6-2 6 2 17 0 11 3 8 0 2 2 13 3 5 6 3 5 7 2-1 1-9-3-7 0-7-3-9-1-18-2-7 4-14-3-5 1-6 0-7-2-5 2-9 0-17-2-2-6 2z",415,157],["노형동",0,"M448 279l2-5-4-4 0-16-3-2-8-8-6-2-1-2-1-11-6-12-6-3-3-5-2-13 0-2-3-8 0-11-2-17 2-6-1-6-1-10 1-12-2-6-8-8-2-5-7 5-10 6-7 5 1 3 4 3 1 4-2 4 1 5-6 4-6-3-6 2-1 3 4 6-3 10 1 6 2 4 3 8-2 7-2 4 1 6 2 23 2 5 6 4 3 5-1 2 1 7 15 7 4 4 7 0 11-3 13 10 8 0z",392,193],["외도동",0,"M357 143l6-2 6 3 6-4-1-5 2-4-1-4-4-3-1-3-1-3-6-7-3-2-2-4 1-4-5 0-3 3-10 3-9-2-5 4 2 5-1 6-2 7 4 7 6 2 5 0 8-4 5 0 3 7z",351,123],["이호동",0,"M387 110l-3-2-5-7-2-7-2-1-7 0-3 3 2 2-4 4-4-1-1 4 2 4 3 2 6 7 1 3 7-5z",372,106],["도두동",0,"M401 82l-4 3-10 0-4-1-3 3-3 7 2 7 5 7 3 2 7-5 5-2 7 4 5 1-1-9 2-1-2-6-3-6z",394,96],["대정읍",1,"M152 636l1-4-1-10-4-2-3 8 0 5 3 4zM152 568l12-8-1-6-3-1-2-4-5-2-3 1-5 5-2 4 6 4zM34 401l0 6 1 4 4 5 5 4 2 3 1 5 3 5 4 3 7 3 0 3 6 5 3 4 9 3 6 4 2-2 6 0 7 5 3 4 5 2 3 9 6 3 3 6 3 1 1 4 4 6 3-1 4 6 2-1 6 1 2 6-3 1-1 6 1 4 9 5 3 0 5-2 0-4 4 0 6-3 2 5 3 3 8-2 0-3-2-6-2-2 1-10 2-2 3-8-3-1-5-3-1-6-6-8 2-14 6-2 3-8 3-13 0-8-1-3 6-8 4-4-2-7-2-2-7-4-2-7 1-12-2-6-6-5-7-4-10 9-4 8-9 2-8 3-8 5-5 6 0 2 1 11-3 1-13-13-11-5-11-6-11-6-12-3 0 5-9 2-9 1-6 5 1 5z",126,439],["남원읍",1,"M488 278l-8-2-4 2-8 7-2 2 19 8 8 7 7 3 3 3 3 11 11 16 3 3 6 2 3 4 2 6 5 6 0 3 1 5 1 13 4 3 0 5-2 4 1 5 12 3 0 4 3 4 4 1 3 8 1 5-2 4 3 6-2 8 2 6 4 1 7-5 8-3 0-6 2-6 7-4 6-1 4 2 3-3-1-6 4 0-1 4 3 2 8-1 4 4 3 1 2-5 6 1 7 0 10-1 9-4 11-3 3 1 6-2 1-3 10 0 1-3 6 6 8-2 3-3 3-4 9-9 4-3 4-1 0-4 5-7 4-1 3-5 0-3-2-5-5-1-8-10-1 0-4-8-1-4 2-2-1-8-3-7-4-4-4-9-8-7-1-5-7-12-5 1-8-10-7 2-12-4-6-3-6-1-3 3-4-2-6-2-6 2-4-4-5-1-7-3-3-5-8 0-6-7-1-6-3 0-16 2-3-1-8 6-4 8-4-1-10 3-4 0-6 3-12 9-13 3-5 1-8-1z",614,338],["성산읍",1,"M775 177l1 3 3 1 4 0 5 8-1 9 5 2 1 3-3 7-1 7-3 11-3 11-5 11 0 2-2 6-5 2-1 2 3 6 2 1 3 6 5 2 3-1 12 12 11 6 3 2 6 10 3 8 4 5 2 7 9-3 5-12 2-1 8-10-2-6-1-7 6-3 1-8 3-3 4-3 3-4 0-4 3-3 4 0 3-4 5-2 4 1 10-5 0-5-1-5-4-6 6-5 1-7 3-3 0-5 3-4 2-6 3-3-2-5 1-6 6 1 2 6-3 4 7 6 5 0 1-5 4-5-2-4-7-4-4 0-2-4 1-2 1-5-3-3 2-4 2-6 2 0 3-4-1-4 5-2 7 7 4 1 4-2 1-3-4-5-5-2-3-4 0-4-3-5 1-3-9 0 0 7-5-2 0-3-8-3-3-1-3 3-3-8-4 2-3-2 0-6-8 0-10 3-12 7-2 3-9 4-3 3-4 0-5 3-4 6-9 1-11 5-9 6-6 2 1 6-4 3-6-3-1 3-6 1z",847,211],["안덕면",1,"M187 348l-8 4-9 6-5 6 7 4 6 5 2 6-1 12 2 7 7 4 2 2 2 7-4 4-6 8 1 3 0 8-3 13-3 8-6 2-2 14 6 8 1 6 5 3 3-5 6-5 4-3 4 0 2-5 5 0 1-5 4-3 10-3 6 1 3 6 10-1 6 2 7-1 6 1 4 5 5 0 0-7 2-3 3-9-3-8-1-5 1-13 4-8-6-12 3-6 1-10 3-4 4-11 3-3 2 0 1 4 3 4 5 2 5 4 8-1 3-11 5-9 8-2 10-7 3-8 2-1 0-8 1-4 7-5 1-5-2-5-6 3-12 0-10-5-11-4-6 0-4 1-12-4-7-1-5 3-2 4-23 1-7-3-6 3-3 3-6 8-4 3-4 6-3 1-2-2-19 7z",243,387],["표선면",1,"M691 202l-10 2-8 3-6-1-6 1-13 7-6 6-4 1 1 3 0 8-2 6-17 2-3-1-5-5-3 0-9 4-3 7 1 6 6 7 8 0 3 5 7 3 5 1 4 4 6-2 6 2 4 2 3-3 6 1 6 3 12 4 7-2 8 10 5-1 7 12 1 5 8 7 4 9 4 4 3 7 1 8-2 2 1 4 4 8 1 0 8 10 5 1 2 5 0 3 2-2 4-2 12 7 3-2 5 1 7-1 5 3 5-2 0-3 8-3 1 2 4 1 12-4 3-4 8-8 1-4 4-1 2-7-7-4-1-4 2-3 6-4-2-7-4-5-3-8-6-10-3-2-11-6-12-12-3 1-5-2-3-6-2-1-3-6 1-2 5-2 2-6 0-2 5-11 3-11 3-11 1-7 3-7-1-3-5-2 1-9-5-8-4 0-3-1-1-3-10 4-4-1-5 0-7 9-5 4-4 4-4 2-11 10-5 3-6 0-4 2-6-2-12-7z",733,274],["송산동",1,"M495 476l0 4 5 0-2-4zM535 476l5-3-4-3-4 2 0 3zM489 463l-1 2 7 4-1-7-4 1zM553 458l-3-2-1-7-2-3-6-2-2-4-6 2-3-5-5 4-1 3 0 6-9-2-4 1-4 3-4 0-7 0-4 3-1 2 0 2 9 7 2-3-3-4 5-5 6 0 6 1 5-1 3 1 2 6 7 4 3 0 7-4z",526,455],["정방동",1,"M503 452l-1-5-10 2-4 2 4 4 4-3z",496,451],["중앙동",1,"M502 447l-5-4 0-3-6 1 1 8z",495,445],["천지동",1,"M490 463l-1-5 2-1 1-2-4-4 4-2-1-8-10 2-3 4-5 1-2 5 2 3-2 6 5 1 3-5 4 3 6 2z",482,453],["효돈동",1,"M556 405l-5 5-10 4-4 13-6 2-2 4 1 4 3 5 6-2 2 4 6 2 2 3 1 7 3 2 4 1 3-4 0-9 2 1 3-4-2-6 2-8-3-6 2-4-1-5-3-8z",550,431],["영천동",1,"M454 291l4 3-1 4 4 10 2 6 1 5 4 7 4 15 1 9 4 5 0 3 6 4 1 4 1 10 4 3 2 18 8 15 8-4 1 9 5 5 1 3-3 3-1 6-1 9 2 6 4-1 9 2 0-6 1-3 5-4-1-4 2-4 6-2 4-13 10-4 5-5-3-4 0-4-12-3-1-5 2-4 0-5-4-3-1-13-1-5 0-3-5-6-2-6-3-4-6-2-3-3-11-16-3-11-3-3-7-3-8-7-19-8-4 4-2-2z",506,365],["동홍동",1,"M511 449l-2-6 1-9 1-6 3-3-1-3-5-5-1-9-8 4-8-15-2-18-4-3-1-10-1-4-6-4 0-3-4-5-1-9-4-15-4-7-1-5-2-6-1 8-3 2-3 5-1 5 0 10 2 7 0 5 4 4 2-1 5 2 3 6 5 8 0 8 4 8 0 4 3 11 4 6 2 4 3 15-2 1 3 15 6-1 0 3 5 4 1 5 4 0z",483,386],["서홍동",1,"M446 292l-1 13 2 6-1 1 1 9 0 4 1 14-3 9 1 6-6 6 0 4 3 3 4 10 1 7-1 5 2 3 6 0 5 8 2 9 0 5 6 7 1 8 0 7-1 2 7 8 3 1 3-4 10-2-3-15 2-1-3-15-2-4-4-6-3-11 0-4-4-8 0-8-5-8-3-6-5-2-2 1-4-4 0-5-2-7 0-10 1-5 3-5 3-2 1-8-4-10 1-4-4-3-2-2z",464,379],["대륜동",1,"M441 493l1-3-4-3-3 4zM441 293l-2 3 1 5-3 8 3 10-1 10-1 3-4 3 0 3 1 17 1 7-3 14 1 5-1 2-6 2 2 14 6 1 2 4-5 2 0 6-3 10 1 5 2 4-1 13-3 6-6 2 9 8-2 4-3 11 5-2 12-9 1-5 11 3 5 0 7-4 4 4 2-6-2-3 2-5 5-1-3-1-7-8 1-2 0-7-1-8-6-7 0-5-2-9-5-8-6 0-2-3 1-5-1-7-4-10-3-3 0-4 6-6-1-6 3-9-1-14 0-4-1-9 1-1-2-6 1-13z",446,410],["대천동",1,"M426 296l-1 6-10 10-11 9-2 9 0 9 0 3-11 16-1 7 3 4 1 10-1 1 3 14-2 10-4 11-6 5 0 11 0 10-9-1-4 11-2 10 3 2 1 8 5 5 4 2 3 6 7 1 4-2-1-4 6-1 6-5 3 0 6 1 1 3 9-2 3-11 2-4-9-8 6-2 3-6 1-13-2-4-1-5 3-10 0-6 5-2-2-4-6-1-2-14 6-2 1-2-1-5 3-14-1-7-1-17 0-3 4-3 1-3 1-10-3-10 3-8-1-5 2-3-7-2-4 4z",410,399],["중문동",1,"M360 295l1 4-4 4-4 2 2 8-3 3 2 4 0 5-1 6-3 2-6 7-6 11-5 18 3 4-3 5-2 6 3 10-1 3-2 4 2 12-2 5 1 2 0 11-2 5-4 3-3 4 0 5 3 3-3 6 8 8 9 6 5-1 1-4 5 0 11-7 7 2 2-10 4-11 9 1 0-10 0-11 6-5 4-11 2-10-3-14 1-1-1-10-3-4 1-7 11-16 0-3 0-9 2-9 11-9 10-10 1-6-3-1-4-1-11 7-6-6-5 0-6 4-5-2-5-1-8 0z",366,378],["예래동",1,"M343 321l2 5-1 5-7 5-1 4 0 8-2 1-3 8-10 7-8 2-5 9-3 11-8 1-5-4-5-2-3-4-1-4-2 0-3 3-4 11-3 4-1 10-3 6 6 12-4 8-1 13 1 5 3 8-3 9-2 3 0 7 1 3 9-4 3 2 2-3 4 1 7-6 7-3 9-6 9-2 2 2 3 1 3-6-3-3 0-5 3-4 4-3 2-5 0-11-1-2 2-5-2-12 2-4 1-3-3-10 2-6 3-5-3-4 5-18 6-11 6-7 3-2 1-6 0-5-2-4 3-3-2-8 4-2 4-4-1-4-7 2-5 5 1 7-1 7z",304,411]]};
+var CITY=['제주시','서귀포시'],SN=['관심','주의','경고','위험'],WD='일월화수목금토';
 function st(v){return v>=75?3:v>=50?2:v>=25?1:0}
-function shape(i){return ['<circle class="f0" cx="6" cy="6" r="5"/>','<path class="f1" d="M6 .6 11.6 11H.4z"/>','<path class="f2" d="M6 .2 11.8 6 6 11.8.2 6z"/>','<rect class="f3" x="1" y="1" width="10" height="10" rx="1.5"/>'][i]}
-function ico(i,s){s=s||12;return '<svg class="si" width="'+s+'" height="'+s+'" viewBox="0 0 12 12" aria-hidden="true">'+shape(i)+'</svg>'}
-function badge(i){return '<span class="bd b'+i+'">'+ico(i,11)+ST[i].n+'</span>'}
-function dt(i){var d=new Date(2026,9,21+i);return {m:d.getMonth()+1,d:d.getDate(),w:WD[d.getDay()]}}
-function dl(i){var d=dt(i);return d.m+'월 '+d.d+'일('+d.w+')'}
+function chip(s){return '<span class="chip c'+s+'"><i></i>'+SN[s]+'</span>'}
+function day(i){var d=new Date(D.date[0],D.date[1],D.date[2]+i);return {m:d.getMonth()+1,d:d.getDate(),w:WD[d.getDay()]}}
+function md(i){var d=day(i);return d.m+'/'+d.d+'('+d.w+')'}
 function hash(s){var h=7;for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;return h}
-function series(a){
- if(a.s)return a.s;var h=hash(a[0]),r=[];
- for(var i=0;i<14;i++){var x=a[2]*J[i]/J[0];if(i)x+=((h>>>(i%13))&3)-1.5;r.push(Math.max(1,Math.min(99,Math.round(x))))}
- return a.s=r;
-}
-function delta(a){var h=hash(a[0]);return ((h>>>4)%7)-3}
-function summary(d){
- var mx=0,i;for(i=1;i<d.length;i++)if(d[i]>d[mx])mx=i;
- var s0=st(d[0]),ch=-1;for(i=1;i<d.length;i++)if(st(d[i])!==s0){ch=i;break}
- var t='가장 높은 날은 <b>'+dl(mx)+'</b>(위험지수 '+d[mx]+')이고, ';
- if(ch>0)t+='<b>'+dl(ch)+'</b>부터 \''+ST[st(d[ch])].n+'\' 단계로 '+(st(d[ch])<s0?'내려갈':'올라갈')+' 전망입니다.';
- else t+='14일 동안 \''+ST[s0].n+'\' 단계가 이어질 전망입니다.';
- return t;
-}
+function ico(p){return '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">'+p+'</svg>'}
+var $=function(id){return document.getElementById(id)};
 
-/* ===== 오늘 단계 ===== */
-function renderToday(){
- var v=J[0],s=st(v),el=document.getElementById('today');
- el.style.setProperty('--sc','var(--s'+s+')');
- var meter='';for(var k=0;k<4;k++)meter+='<i class="'+(k===s?'on':'')+'"></i>';
- var lab='';for(k=0;k<4;k++)lab+='<span class="'+(k===s?'cur':'')+'">'+ST[k].n+'</span>';
- var hi=0;A.forEach(function(a){if(st(a[2])===3)hi++});
- el.innerHTML='<div class="h-top"><h2 id="t-today">오늘 제주 전체 <span class="ex">예시</span></h2><span>10월 21일(수)</span></div>'+
-  '<div class="h-main">'+ico(s,40)+'<div class="h-word">'+ST[s].n+'</div><div class="h-side"><span>'+ST[s].k+' / 4단계</span><span>위험지수 <b>'+v+'</b> / 100</span></div></div>'+
-  '<div class="meter" role="img" aria-label="4단계 중 '+ST[s].k+' '+ST[s].n+', 위험지수 '+v+'">'+meter+'<span class="mk" style="left:'+v+'%"></span></div><div class="ml">'+lab+'</div>'+
-  '<p class="h-msg">'+ST[s].m+'</p>'+
-  '<p class="h-note">\'위험\' 단계 읍면동 <b>'+hi+'곳</b> · 단계 기준(예시): 관심 0~24, 주의 25~49, 경고 50~74, 위험 75~100</p>';
-}
+/* 지역 목록 */
+var A=MAP.f.map(function(m,i){var v=D.areas[m[0]],h=hash(m[0]),s=[],k;
+ for(k=0;k<14;k++){var x=v*D.jeju[k]/D.jeju[0];if(k)x+=((h>>>(k%13))&3)-1.5;s.push(Math.max(1,Math.min(99,Math.round(x))))}
+ return {i:i,n:m[0],c:m[1],v:v,d:((h>>>4)%7)-3,s:s}});
+var byV=A.slice().sort(function(a,b){return b.v-a.v});
+var hi=A.filter(function(a){return st(a.v)===3}).length;
 
-/* ===== 기상 요인 ===== */
-function renderWx(){
- document.getElementById('wx').innerHTML=WX.map(function(w){
-  return '<div class="wi"><div class="wh"><svg viewBox="0 0 24 24" aria-hidden="true">'+w[5]+'</svg>'+w[0]+'</div><div class="wv">'+w[1]+'<small>'+w[2]+'</small></div><div class="wd">'+w[3]+'</div><div class="wm" role="img" aria-label="예측 기여 '+w[4]+'%"><i style="width:'+w[4]+'%"></i></div><div class="wc">예측 기여 <b>'+w[4]+'%</b></div></div>';
- }).join('');
-}
+/* KPI */
+(function(){
+ var j=D.jeju[0],dj=j-D.yday;
+ var K=[
+  ['오늘 위험지수',j,'/100','<span class="dl up">▲ '+dj+'</span>어제 '+D.yday,'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4M12 16h.01"/>','red'],
+  ['위험 단계 읍면동',hi,'곳','<span class="dl up">▲ 1</span>어제 '+(hi-1)+'곳','<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>','red'],
+  ['평균 기온',D.wx[0][1],'℃','<span class="dl nt">▲ 1.3</span>평년 대비',D.wx[0][5],''],
+  ['평균 습도',D.wx[1][1],'%','<span class="dl nt">▲ 3%p</span>평년 대비',D.wx[1][5],'']];
+ $('kpi').innerHTML=K.map(function(k){return '<div class="k"><div class="kl"><span class="ki '+k[5]+'">'+ico(k[4])+'</span>'+k[0]+'</div><div class="kv">'+k[1]+'<small>'+k[2]+'</small></div><div class="kf">'+k[3]+'</div></div>'}).join('');
+})();
 
-/* ===== 14일 그래프 (인라인 SVG) ===== */
-function chart(box,data,o){
- var W=Math.max(260,Math.floor(box.clientWidth)),H=o.h,cp=!!o.compact;
- var m={l:28,r:cp?10:48,t:cp?10:16,b:24},pw=W-m.l-m.r,ph=H-m.t-m.b,n=data.length;
- function x(i){return m.l+i*pw/(n-1)}
+/* 지도 */
+var cur=byV[0].i;
+function renderMap(){
+ var svg=$('jm'),q=MAP.inset,h='';
+ svg.setAttribute('viewBox','0 0 '+MAP.w+' '+MAP.h);
+ h+='<rect class="ins" x="'+(q[0]-12)+'" y="'+(q[1]-12)+'" width="'+(q[2]+24)+'" height="'+(q[3]+40)+'" rx="14"/>';
+ MAP.f.forEach(function(m,i){h+='<path id="a'+i+'" class="m'+st(A[i].v)+'" d="'+m[2]+'" data-i="'+i+'"/>'});
+ h+='<use class="hl" id="hl" href="#a'+cur+'"/>';
+ MAP.f.forEach(function(m){if(!/[읍면]$/.test(m[0])||m[0]==='추자면')return;
+  var x=m[3],y=m[4]+6,an='middle';if(m[0]==='우도면'){x-=14;y-=24;an='end'}
+  h+='<text class="ml" x="'+x+'" y="'+y+'" text-anchor="'+an+'">'+m[0].slice(0,-1)+'</text>'});
+ h+='<text class="il" x="'+(q[0]+q[2]/2)+'" y="'+(q[1]+q[3]+20)+'" text-anchor="middle">추자</text>';
+ svg.innerHTML=h;
+}
+function pick(i){
+ cur=i;var a=A[i],s=st(a.v);$('hl').setAttribute('href','#a'+i);
+ $('sel').innerHTML='<span class="t">'+(i===byV[0].i?'최고':'선택')+'</span><b>'+a.n+'</b><span class="c">'+CITY[a.c]+'</span>'+chip(s)+'<span class="v">'+a.v+'</span>';
+}
+$('jm').addEventListener('pointerover',function(e){var p=e.target.closest('path');if(p&&e.pointerType==='mouse')pick(+p.getAttribute('data-i'))});
+$('jm').addEventListener('click',function(e){var p=e.target.closest('path');if(p)pick(+p.getAttribute('data-i'))});
+
+/* 지도 옆 카드 */
+(function(){
+ var j=D.jeju[0],s=st(j);
+ $('side').innerHTML=
+  '<div class="hc hb"><div class="hct">'+ico('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>')+'오늘 제주 전체</div><div class="hcv">'+SN[s]+'<small>'+(s+1)+'/4단계</small></div><div class="hcr"><span>위험지수</span><b>'+j+'</b></div><div class="hbar"><i style="width:'+j+'%"></i></div></div>'+
+  '<div class="hc hs"><div class="hct">'+ico('<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>')+'위험 단계</div><div class="hcv">'+hi+'<small>/ '+A.length+'곳</small></div><div class="hcr"><span>경고 이상</span><b>'+A.filter(function(a){return a.v>=50}).length+'곳</b></div><div class="hbar"><i style="width:'+(hi/A.length*100).toFixed(1)+'%"></i></div></div>';
+})();
+
+/* Top 5 + 분포 */
+(function(){
+ var t=byV.slice(0,5),sum=0;
+ $('t5').innerHTML=t.map(function(a){sum+=a.v;return '<li><span class="n">'+a.n+'</span><span class="b"><i style="width:'+a.v+'%"></i></span><span class="v">'+a.v+'</span></li>'}).join('');
+ $('t5avg').innerHTML='평균<b>'+Math.round(sum/5)+'</b>';
+ var h='';[0,1].forEach(function(c){var n=[0,0,0,0],tot=0;A.forEach(function(a){if(a.c===c){n[st(a.v)]++;tot++}});
+  h+='<div class="dist"><span>'+CITY[c]+'</span><span class="sb" role="img" aria-label="'+CITY[c]+' '+SN.map(function(x,k){return x+' '+n[k]+'곳'}).join(', ')+'">'+n.map(function(x,k){return x?'<i class="q'+k+'" style="flex:'+x+'"></i>':''}).join('')+'</span><b>'+tot+'</b></div>'});
+ var all=[0,0,0,0];A.forEach(function(a){all[st(a.v)]++});
+ h+='<div class="dl2">'+SN.map(function(x,k){return '<span><i class="q'+k+'"></i>'+x+' <b>'+all[k]+'</b></span>'}).join('')+'</div>';
+ $('dist').innerHTML=h;
+})();
+
+/* 기상 요인 */
+$('wxl').innerHTML=D.wx.map(function(w){return '<li><span class="ki">'+ico(w[5])+'</span><div><div class="wn">'+w[0]+' <span class="dl nt" style="margin-left:4px">평년 '+w[3]+'</span></div><div class="wv">'+w[1]+'<small>'+w[2]+'</small></div></div><div class="wc"><b>'+w[4]+'%</b><div class="wm"><i style="width:'+(w[4]/42*100)+'%"></i></div></div></li>'}).join('');
+
+/* 막대 그래프 */
+function bars(box,data,o){
+ var W=Math.max(240,Math.floor(box.clientWidth)),H=o.h,n=data.length,cp=!!o.cp,wide=W>=560;
+ var m={l:28,r:wide&&!cp?38:6,t:40,b:cp?28:40},pw=W-m.l-m.r,ph=H-m.t-m.b,sl=pw/n,bw=Math.min(cp?26:46,sl*(n>7?.62:.5)),k;
  function y(v){return m.t+ph-v/100*ph}
- var s='<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'" tabindex="0" role="img" aria-label="'+o.label+' 14일 위험지수 그래프. 화살표 키로 날짜별 값을 볼 수 있습니다.">',k,i;
- for(k=0;k<4;k++)s+='<rect class="bn'+k+'" x="'+m.l+'" y="'+y(B[k+1])+'" width="'+pw+'" height="'+(y(B[k])-y(B[k+1]))+'"/>';
- for(k=1;k<4;k++)s+='<line class="th th'+k+'" x1="'+m.l+'" x2="'+(m.l+pw)+'" y1="'+y(B[k])+'" y2="'+y(B[k])+'"/>';
- s+='<line class="ax" x1="'+m.l+'" x2="'+(m.l+pw)+'" y1="'+y(0)+'" y2="'+y(0)+'"/>';
- for(k=0;k<5;k++)s+='<text class="tk" x="'+(m.l-6)+'" y="'+(y(B[k])+4)+'" text-anchor="end">'+B[k]+'</text>';
- if(!cp)for(k=0;k<4;k++)s+='<g transform="translate('+(m.l+pw+8)+','+((y(B[k])+y(B[k+1]))/2-6)+')">'+shape(k)+'<text class="bl" x="15" y="10">'+ST[k].n+'</text></g>';
- var step=Math.max(1,Math.ceil(n*40/pw));
- for(i=0;i<n;i+=step){var d=dt(i);s+='<text class="tk" x="'+x(i)+'" y="'+(H-6)+'" text-anchor="middle">'+d.m+'/'+d.d+'</text>'}
- var p='';data.forEach(function(v,i){p+=(i?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1)});
- s+='<path class="ln" d="'+p+'"/>';
- s+='<line class="ch" x1="0" x2="0" y1="'+m.t+'" y2="'+(m.t+ph)+'" visibility="hidden"/>';
- s+='<circle class="dt" cx="'+x(0)+'" cy="'+y(data[0])+'" r="4.5"/><circle class="dt" cx="'+x(n-1)+'" cy="'+y(data[n-1])+'" r="4.5"/>';
- s+='<text class="dl" x="'+(x(0)+2)+'" y="'+(y(data[0])-11)+'">오늘 '+data[0]+'</text>';
- s+='<text class="dl" x="'+(x(n-1))+'" y="'+(y(data[n-1])-11)+'" text-anchor="end">'+data[n-1]+'</text>';
- s+='<circle class="dt hd" r="5" visibility="hidden"/></svg><div class="tt" hidden></div>';
+ var s='<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'" tabindex="0" role="img" aria-label="'+o.label+' '+n+'일 위험지수 막대 그래프">';
+ [0,25,50,75,100].forEach(function(v){s+='<line class="'+(v?'gl':'ga')+'" x1="'+m.l+'" x2="'+(W-m.r)+'" y1="'+y(v)+'" y2="'+y(v)+'"/><text class="tk" x="'+(m.l-8)+'" y="'+(y(v)+4)+'" text-anchor="end">'+v+'</text>'});
+ if(wide&&!cp)for(k=1;k<4;k++)s+='<text class="sn" x="'+(W-m.r+6)+'" y="'+(y(k*25)+4)+'">'+SN[k]+'</text>';
+ for(k=0;k<n;k++){var v=data[k],cx=m.l+sl*k+sl/2,bh=Math.max(bw,v/100*ph),d=day(k);
+  s+='<rect class="bar" data-i="'+k+'" x="'+(cx-bw/2).toFixed(1)+'" y="'+(m.t+ph-bh).toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="'+(bw/2).toFixed(1)+'"/>';
+  var lab=sl>=40?d.m+'/'+d.d:d.d;
+  s+='<text class="tk'+(k?'':' td')+'" x="'+cx+'" y="'+(H-m.b+17)+'" text-anchor="middle">'+lab+'</text>';
+  if(!cp)s+='<text class="tk'+(k?'':' td')+'" x="'+cx+'" y="'+(H-m.b+32)+'" text-anchor="middle">'+(k?d.w:'오늘')+'</text>'}
+ s+='<circle class="bdot" r="5"/><g class="bub"><rect height="26" rx="13"/><path d="M-5 0h10l-5 6z"/><text text-anchor="middle" y="17"></text></g></svg>';
  box.innerHTML=s;
- var svg=box.querySelector('svg'),ch=svg.querySelector('.ch'),hd=svg.querySelector('.hd'),tt=box.querySelector('.tt'),cur=0;
+ var svg=box.firstChild,rs=svg.querySelectorAll('.bar'),dot=svg.querySelector('.bdot'),bub=svg.querySelector('.bub'),bt=bub.querySelector('text'),br=bub.querySelector('rect'),bp=bub.querySelector('path'),c=o.act||0;
  function show(i){
-  cur=i;var cx=x(i),v=data[i];
-  ch.setAttribute('x1',cx);ch.setAttribute('x2',cx);ch.setAttribute('visibility','visible');
-  hd.setAttribute('cx',cx);hd.setAttribute('cy',y(v));hd.setAttribute('visibility','visible');
-  tt.innerHTML='<span class="td">'+dl(i)+(i?'':' · 오늘')+'</span><span class="tv"><b>'+v+'</b>'+badge(st(v))+'</span>';
-  tt.hidden=false;
-  var tw=tt.offsetWidth,th=tt.offsetHeight,left=Math.min(Math.max(cx-tw/2,0),W-tw),top=y(v)-th-14;
-  if(top<0)top=y(v)+14;
-  tt.style.left=left+'px';tt.style.top=top+'px';
+  c=i;rs.forEach(function(r,j){r.classList.toggle('on',j===i)});
+  var v=data[i],cx=m.l+sl*i+sl/2,top=m.t+ph-Math.max(bw,v/100*ph);
+  dot.setAttribute('cx',cx);dot.setAttribute('cy',top+bw/2);
+  bt.textContent=v+' · '+SN[st(v)];var tw=bt.getComputedTextLength()+24;
+  var bx=Math.min(Math.max(cx-tw/2,m.l-6),W-tw-2);
+  br.setAttribute('width',tw);br.setAttribute('x',bx-cx);bt.setAttribute('x',bx-cx+tw/2);bp.setAttribute('transform','translate(0,26)');
+  bub.setAttribute('transform','translate('+cx+','+(top-38)+')');
+  svg.setAttribute('aria-label',o.label+' '+md(i)+' 위험지수 '+v+' '+SN[st(v)]);
  }
- function hide(){ch.setAttribute('visibility','hidden');hd.setAttribute('visibility','hidden');tt.hidden=true}
- function idx(e){var r=svg.getBoundingClientRect();return Math.max(0,Math.min(n-1,Math.round((e.clientX-r.left-m.l)/pw*(n-1))))}
+ function idx(e){var r=svg.getBoundingClientRect();return Math.max(0,Math.min(n-1,Math.floor((e.clientX-r.left-m.l)/sl)))}
  svg.addEventListener('pointermove',function(e){show(idx(e))});
  svg.addEventListener('pointerdown',function(e){show(idx(e))});
- svg.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse')hide()});
- svg.addEventListener('focus',function(){show(cur)});
- svg.addEventListener('blur',hide);
- svg.addEventListener('keydown',function(e){
-  if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();show(Math.max(0,Math.min(n-1,cur+(e.key==='ArrowRight'?1:-1))))}
-  else if(e.key==='Escape'){hide()}
- });
- return {show:show,hide:hide};
+ svg.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse')show(o.act||0)});
+ svg.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();show(Math.max(0,Math.min(n-1,c+(e.key==='ArrowRight'?1:-1))))}});
+ show(c);
 }
-var cmain=document.getElementById('cmain');
-var MC,days=document.getElementById('days');
-function mainH(){return window.innerWidth>=960?300:240}
-function renderMain(){MC=chart(cmain,J,{h:mainH(),label:'제주 전체'})}
-function renderDays(){
- days.innerHTML=J.map(function(v,i){var d=dt(i),s=st(v);
-  return '<li class="dy" tabindex="0" data-i="'+i+'" aria-label="'+dl(i)+' 위험지수 '+v+' '+ST[s].n+'"><span>'+(i?d.w:'오늘')+'</span><span>'+d.m+'/'+d.d+'</span>'+ico(s,12)+'<b>'+v+'</b><span class="dn">'+ST[s].n+'</span></li>'}).join('');
+var N=14;
+function facts(d,el){
+ var mx=0,i,s0=st(d[0]),ch=-1;for(i=1;i<d.length;i++){if(d[i]>d[mx])mx=i;if(ch<0&&st(d[i])!==s0)ch=i}
+ var h='<span>최고 <b>'+d[mx]+'</b> '+md(mx)+'</span>';
+ if(ch>0)h+='<span>'+SN[s0]+' → '+SN[st(d[ch])]+' <b>'+md(ch)+'</b></span>';
+ h+='<span>평균 <b>'+Math.round(d.reduce(function(a,b){return a+b},0)/d.length)+'</b></span>';
+ el.innerHTML=h;
 }
-function pick(e){var li=e.target.closest('.dy');if(!li)return;days.querySelectorAll('.dy.on').forEach(function(x){x.classList.remove('on')});li.classList.add('on');MC.show(+li.getAttribute('data-i'))}
-days.addEventListener('pointerover',pick);days.addEventListener('click',pick);days.addEventListener('focusin',pick);
-days.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse'){MC.hide();days.querySelectorAll('.dy.on').forEach(function(x){x.classList.remove('on')})}});
+function renderFc(){var d=D.jeju.slice(0,N);bars($('cmain'),d,{h:window.innerWidth>=1100?290:250,label:'제주 전체'});facts(d,$('facts'))}
+$('fc').querySelector('.seg').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;N=+b.getAttribute('data-n');
+ this.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});renderFc()});
 
-/* ===== 읍면동 목록 ===== */
-var F={c:-1,sort:'d',q:'',all:false},openName=null,LIM=12,more=document.getElementById('more');
-function renderArea(){
- var list=A.filter(function(a){return (F.c<0||a[1]===F.c)&&(!F.q||a[0].indexOf(F.q)>=0)});
- list.sort(F.sort==='n'?function(a,b){return a[0].localeCompare(b[0],'ko')}:F.sort==='a'?function(a,b){return a[2]-b[2]}:function(a,b){return b[2]-a[2]});
- var c=[0,0,0,0];list.forEach(function(a){c[st(a[2])]++});
- var cb='';for(var k=0;k<4;k++)if(c[k])cb+='<i class="bg'+k+'" style="flex:'+c[k]+'" title="'+ST[k].n+' '+c[k]+'곳"></i>';
- var cl='<span>'+list.length+'곳 중</span>';for(k=3;k>=0;k--)cl+='<span>'+ico(k,11)+ST[k].n+' <b>'+c[k]+'</b></span>';
- document.getElementById('cnt').innerHTML=list.length?'<div class="cb" role="img" aria-label="단계별 지역 수">'+cb+'</div><div class="cl">'+cl+'</div>':'';
- var head='<li class="ah" aria-hidden="true"><span>지역</span><span></span><span>지수</span><span>단계</span><span>어제</span></li>';
- var h=list.length?head+(window.innerWidth>=960&&list.length>1?head.replace('class="ah"','class="ah h2c"'):''):'';
- var rest=F.all||F.q?0:Math.max(0,list.length-LIM);
- if(rest&&openName&&list.slice(LIM).some(function(a){return a[0]===openName}))rest=0;
- more.hidden=!rest&&!(F.all&&list.length>LIM&&!F.q);
- more.textContent=rest?'나머지 '+rest+'곳 더 보기':'접기';
- if(rest)list=list.slice(0,LIM);
- list.forEach(function(a){
-  var v=a[2],s=st(v),dd=delta(a),op=openName===a[0];
-  h+='<li class="ar"><button type="button" class="ab" aria-expanded="'+op+'" data-n="'+a[0]+'"><span class="an"><b>'+a[0]+'</b><small>'+CITY[a[1]]+'</small></span><span class="ag"><i class="bg'+s+'" style="width:'+v+'%"></i></span><span class="av">'+v+'</span>'+badge(s)+'<span class="ac" aria-label="어제보다 '+(dd>0?dd+' 높음':dd<0?(-dd)+' 낮음':'같음')+'">'+(dd>0?'+'+dd:dd<0?'−'+(-dd):'0')+'</span></button>'+(op?'<div class="ax2"><div class="cbox"></div><p></p></div>':'')+'</li>';
- });
- if(!list.length)h='<li class="empty">\''+F.q.replace(/[<>&"]/g,'')+'\'에 맞는 읍면동이 없습니다.</li>';
- var ul=document.getElementById('al');ul.innerHTML=h;
- if(openName){var b=ul.querySelector('.ab[aria-expanded="true"]');if(b)drawMini(b)}
+/* 표 */
+var F={c:-1,q:'',all:false},open=null,LIM=10;
+function spark(s){var w=72,h=22,mx=100,p='';s.forEach(function(v,i){p+=(i?'L':'M')+(i*w/(s.length-1)).toFixed(1)+' '+(h-2-v/mx*(h-4)).toFixed(1)});
+ return '<svg width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'" aria-hidden="true"><path d="'+p+'" fill="none" stroke="#2457f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'}
+function renderTable(){
+ var L=byV.filter(function(a){return (F.c<0||a.c===F.c)&&(!F.q||a.n.indexOf(F.q)>=0)});
+ $('rpc').textContent=(F.c<0?'제주 전체':CITY[F.c])+' · '+L.length+'곳';
+ var rest=F.all||F.q?0:Math.max(0,L.length-LIM),show=rest?L.slice(0,LIM):L,h='';
+ show.forEach(function(a,k){var s=st(a.v),op=open===a.i;
+  h+='<tr class="r'+(op?' op':'')+'"><td class="rk">'+(k+1)+'</td><td class="nm"><b>'+a.n+'</b><small>'+CITY[a.c]+'</small></td><td><span class="ix">'+a.v+'<i style="--w:'+a.v+'%"></i></span></td><td>'+chip(s)+'</td><td><span class="dd '+(a.d>0?'up':a.d<0?'dn':'eq')+'">'+(a.d>0?'▲ '+a.d:a.d<0?'▼ '+(-a.d):'–')+'</span></td><td class="sp">'+spark(a.s)+'</td><td><button type="button" class="go" data-i="'+a.i+'" aria-expanded="'+op+'" aria-label="'+a.n+' 14일 예측 보기">'+ico('<path d="M7 17 17 7M8 7h9v9"/>')+'</button></td></tr>';
+  if(op)h+='<tr><td class="x" colspan="7"><div class="xb"><div class="cbox"></div><div class="facts"></div></div></td></tr>'});
+ if(!L.length)h='<tr><td class="emp" colspan="7">검색 결과가 없습니다</td></tr>';
+ $('tb').innerHTML=h;
+ var mo=$('more');mo.hidden=!rest&&!(F.all&&L.length>LIM&&!F.q);mo.textContent=rest?'전체 '+L.length+'곳 보기':'접기';
+ if(open!==null){var x=$('tb').querySelector('.xb');if(x){var a=A[open];bars(x.querySelector('.cbox'),a.s,{h:200,cp:true,label:a.n});facts(a.s,x.querySelector('.facts'))}}
 }
-function drawMini(b){
- var a=A.filter(function(x){return x[0]===b.getAttribute('data-n')})[0],x2=b.nextElementSibling,d=series(a);
- chart(x2.querySelector('.cbox'),d,{h:160,compact:true,label:a[0]});
- x2.querySelector('p').innerHTML=a[0]+' · '+summary(d)+' <span class="ex">예시</span>';
-}
-document.getElementById('al').addEventListener('click',function(e){
- var b=e.target.closest('.ab');if(!b)return;
- var n=b.getAttribute('data-n');openName=openName===n?null:n;renderArea();
- var nb=document.querySelector('.ab[data-n="'+n+'"]');if(nb)nb.focus({preventScroll:true});
-});
-document.querySelector('.seg').addEventListener('click',function(e){
- var b=e.target.closest('button');if(!b)return;
- F.c=+b.getAttribute('data-c');this.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});renderArea();
-});
-more.addEventListener('click',function(){F.all=this.textContent!=='접기';renderArea();if(!F.all)document.getElementById('area').scrollIntoView()});
-document.getElementById('sort').addEventListener('change',function(){F.sort=this.value;renderArea()});
-document.getElementById('q').addEventListener('input',function(){F.q=this.value.trim();renderArea()});
+$('tb').addEventListener('click',function(e){var b=e.target.closest('.go');if(!b)return;var i=+b.getAttribute('data-i');open=open===i?null:i;renderTable();pick(i);
+ var nb=$('tb').querySelector('.go[data-i="'+i+'"]');if(nb)nb.focus({preventScroll:true})});
+$('city').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;F.c=+b.getAttribute('data-c');
+ this.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});renderTable()});
+$('q').addEventListener('input',function(){F.q=this.value.trim();renderTable()});
+$('more').addEventListener('click',function(){F.all=this.textContent!=='접기';renderTable();if(!F.all)$('rp').scrollIntoView()});
 
-/* ===== 그리기 ===== */
-renderToday();renderWx();renderMain();renderDays();
-document.getElementById('csum').innerHTML='제주 전체 · '+summary(J)+' <span class="ex">예시</span>';
-renderArea();
+/* 상단 도구 */
+var pop=$('pop'),bB=$('bB');
+bB.addEventListener('click',function(e){e.stopPropagation();pop.hidden=!pop.hidden;bB.setAttribute('aria-expanded',!pop.hidden)});
+document.addEventListener('click',function(e){if(!pop.hidden&&!pop.contains(e.target)){pop.hidden=true;bB.setAttribute('aria-expanded','false')}});
+$('bS').addEventListener('click',function(){$('rp').scrollIntoView();setTimeout(function(){$('q').focus({preventScroll:true})},300)});
+$('bSh').addEventListener('click',function(){var b=this.lastChild;
+ function done(){b.textContent='링크 복사됨';setTimeout(function(){b.textContent='공유'},1600)}
+ if(navigator.share&&matchMedia('(pointer:coarse)').matches)navigator.share({title:document.title,url:location.href}).catch(function(){});
+ else if(navigator.clipboard)navigator.clipboard.writeText(location.href).then(done,done);else done()});
+/* 메뉴 활성 표시 */
+var navs=document.querySelectorAll('.tabs a,.btm a');
+function act(id){navs.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+id)})}
+var SEC=['dash','map','fc','rp'],sp=0;
+function spy(){sp=0;var y=innerHeight*.35,id='dash';SEC.forEach(function(s){if($(s).getBoundingClientRect().top<=y)id=s});if(innerHeight+scrollY>=document.documentElement.scrollHeight-4)id='rp';act(id)}
+addEventListener('scroll',function(){if(!sp){sp=1;requestAnimationFrame(spy)}},{passive:true});
+
+/* 그리기 */
+renderMap();pick(cur);renderFc();renderTable();
 var lw=window.innerWidth,rt;
-window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){
- if(window.innerWidth===lw)return;lw=window.innerWidth;renderMain();renderArea();
-},120)});
+window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){if(window.innerWidth===lw)return;lw=window.innerWidth;renderFc();renderTable()},120)});
 
-/* ===== 로딩 시간·용량 실측 (브라우저 Performance API) ===== */
-function sec(ms){return (ms/1000).toFixed(2)+'초'}
-function kb(b){return (b/1024).toFixed(1)+'KB'}
+/* 실측: 첫 화면 표시 시간 · HTML 전송량 */
 function perf(){
- var nav=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0];
- var fcp=performance.getEntriesByName&&performance.getEntriesByName('first-contentful-paint')[0];
- var t1=fcp?fcp.startTime:(nav?nav.domContentLoadedEventEnd:performance.now());
- var t2=nav&&nav.loadEventEnd>0?nav.loadEventEnd:performance.now();
- var raw=(nav&&nav.decodedBodySize)||new Blob([document.documentElement.outerHTML]).size;
- var tx=nav&&nav.transferSize;
- var res=(performance.getEntriesByType?performance.getEntriesByType('resource'):[]).length;
- document.getElementById('p1').textContent=sec(t1);
- document.getElementById('p2').textContent=sec(t2);
- document.getElementById('p3').textContent=tx>0?kb(tx):kb(raw);
- document.getElementById('p3').parentNode.lastChild.textContent=tx>0?'전송량 · 원본 '+Math.round(raw/1024)+'KB':(nav&&nav.encodedBodySize?'용량 (캐시 사용)':'페이지 용량');
- document.getElementById('p4').textContent=res+'건';
+ var nv=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0],fcp=performance.getEntriesByName&&performance.getEntriesByName('first-contentful-paint')[0];
+ var t=fcp?fcp.startTime:(nv?nv.domContentLoadedEventEnd:performance.now());
+ var b=nv&&nv.transferSize>300?nv.transferSize:(nv&&nv.encodedBodySize)||new Blob([document.documentElement.outerHTML]).size;
+ $('perf').textContent=(t/1000).toFixed(2)+'초 · '+(b/1024).toFixed(1)+'KB';
 }
-if(document.readyState==='complete')setTimeout(perf,0);else window.addEventListener('load',function(){setTimeout(perf,0)});
+if(document.readyState==='complete')setTimeout(perf,0);else addEventListener('load',function(){setTimeout(perf,0)});
 })();
 </script>
 </body>
